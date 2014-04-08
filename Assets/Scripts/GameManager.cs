@@ -6,12 +6,13 @@ public class GameManager : MonoBehaviour {
 	public GameObject TilePrefab;
 	public GameObject TurretPrefab;
 	List <List<Tile>> map = new List<List<Tile>>();
-	List <Turret> TurretList = new List<Turret>();
+	public static Turret[] TurretList;
 	public int mapSize;
-	private GameObject currentSpot = null;
+	public GameObject currentSpot = null;
+	public bool turretIsSelected;
 	public static int layermask = 1<<9;
-	private GameObject selectedTurret;
-	private Turret currentTurret;
+	public static GameObject selectedTurret;
+	public static Turret selectedScript;
 	
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		updateCursor();
+		turretIsSelected = hasTurret(selectedTurret);
+		deselectTurret();
+
 	}
 
 	/* to test creating turrets
@@ -42,6 +46,17 @@ public class GameManager : MonoBehaviour {
 				row.Add(tile);
 			}
 			map.Add(row);
+		}
+	}
+
+	void deselectTurret(){
+		if(turretIsSelected && Input.GetKey(KeyCode.Escape)){
+			currentSpot = null;
+			turretIsSelected = false;
+			currentSpot.renderer.material.color = Color.white;
+			currentTurret = null;
+			selectedTurret = null;
+			selectedTurret.renderer.material.color = Color.white;
 		}
 	}
 	
@@ -73,7 +88,7 @@ public class GameManager : MonoBehaviour {
 		bool checkHit = Physics.Raycast(tileCenter,Vector3.up,out hit,layermask);
 		if(checkHit){
 			GameObject Turret = hit.collider.gameObject;
-			if( Turret.name == "Graphics(Clone)"){
+			if( Turret.tag== "Turret"){
 				if(selectedTurret != null){
 					selectedTurret.renderer.material.color = Color.white;
 				}
@@ -87,7 +102,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	//finds the current Turret in the list
-	public static Turret findCurrentTurret(GameObject currentTurret, List<Turret> TurretList){
+	public static Turret findCurrentTurret(GameObject currentTurret, Turret[] TurretList){
 		foreach(Turret turret in TurretList){
 			if(currentTurret.GetComponent<Turret>() == turret)
 				return turret;

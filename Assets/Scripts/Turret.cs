@@ -22,7 +22,7 @@ public class Turret : MonoBehaviour {
 		if (target != null) {
 			Vector3 amttorotate;
 			amttorotate = Vector3.RotateTowards (turret.transform.forward, target.transform.position - turret.transform.position, 6f, 6f);	
-			Turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
+			turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
 		}
 
 	}
