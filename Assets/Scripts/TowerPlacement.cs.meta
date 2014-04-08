@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 93e75c9e22c12b8429fe4aa84c0132ca
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - towerPrefab: {fileID: 100000, guid: 9bf5f9084f305ba42aa27d4f9f7cfa4e, type: 2}
+  - camera: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
