@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour {
 					if(hasTurret(currentSpot)){
 						selectedScript = findCurrentTurret(selectedTurret,TurretList);
 					}
+					else if(MainGUI.selected >= 0) {
+						Instantiate(Turret[MainGUI.selected],selectedTurret.transform.position, Quaternion.identity);
+
+						MainGUI.selected = -1;
+					}
 				}	
 			}
 		}
