@@ -22,7 +22,7 @@ public class CameraView : MonoBehaviour {
 
 		Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragorigin);
 		
-		Vector3 move = new Vector3(pos.x * .02f, 0, pos.y * .02f);
+		Vector3 move = new Vector3(pos.x * .2f, 0, pos.y * .2f);
 		
 		
 		
