@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		updateCursor();
-		turretIsSelected = hasTurret(selectedTurret);
+		if(currentSpot != null){
+			turretIsSelected =  hasTurret(currentSpot);
+		}
 		deselectTurret();
 
 	}
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour {
 			turretIsSelected = false;
 			currentSpot.renderer.material.color = Color.white;
 			selectedTurret = null;
+			selectedScript = null;
 			selectedTurret.renderer.material.color = Color.white;
 		}
 	}
