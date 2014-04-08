@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour {
 			currentSpot = null;
 			turretIsSelected = false;
 			currentSpot.renderer.material.color = Color.white;
-			currentTurret = null;
 			selectedTurret = null;
 			selectedTurret.renderer.material.color = Color.white;
 		}
@@ -75,7 +74,7 @@ public class GameManager : MonoBehaviour {
 					}
 					currentSpot = cursorSpot;
 					if(hasTurret(currentSpot)){
-						currentTurret = findCurrentTurret(selectedTurret,TurretList);
+						selectedScript = findCurrentTurret(selectedTurret,TurretList);
 					}
 				}	
 			}
