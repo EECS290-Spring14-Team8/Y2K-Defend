@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
 						selectedScript = findCurrentTurret(selectedTurret,TurretList);
 					}
 					else if(MainGUI.selected >= 0) {
-						Instantiate(Turret[MainGUI.selected],selectedTurret.transform.position, Quaternion.identity);
+						Instantiate(TurretList[MainGUI.selected],currentSpot.transform.position, Quaternion.identity);
 
 						MainGUI.selected = -1;
 					}
