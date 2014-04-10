@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour {
 	List <List<Tile>> map = new List<List<Tile>>();
 	public static Turret[] TurretList;
 	public int mapSize;
-	public GameObject currentSpot = null;
 	public bool turretIsSelected;
 	public static int layermask = 1<<9;
 	public static GameObject selectedTurret;
@@ -23,9 +22,6 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		updateCursor();
-		if(currentSpot != null){
-			turretIsSelected =  hasTurret(currentSpot);
-		}
 		deselectTurret();
 
 	}
@@ -53,12 +49,10 @@ public class GameManager : MonoBehaviour {
 
 	void deselectTurret(){
 		if(turretIsSelected && Input.GetKey(KeyCode.Escape)){
-			currentSpot = null;
 			turretIsSelected = false;
-			currentSpot.renderer.material.color = Color.white;
-			selectedTurret = null;
 			selectedScript = null;
 			selectedTurret.renderer.material.color = Color.white;
+			selectedTurret = null;
 		}
 	}
 	
@@ -69,54 +63,18 @@ public class GameManager : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray,out hit,Mathf.Infinity,~layermask)) {
 				GameObject cursorSpot = hit.collider.gameObject;
-				string hitTag = cursorSpot.name;
-				if(hitTag == "Tile(Clone)"){
+				string hitTag = cursorSpot.tag;
+				if(hitTag == "tower"){
 					cursorSpot.renderer.material.color = Color.blue;
-					if(currentSpot != null & cursorSpot!= currentSpot){
-						currentSpot.renderer.material.color = Color.white;
+					turretIsSelected = true;
+					if(selectedTurret != null & cursorSpot!= selectedTurret){
+						selectedTurret.renderer.material.color = Color.white;
 					}
-					currentSpot = cursorSpot;
-					if(hasTurret(currentSpot)){
-						selectedScript = findCurrentTurret(selectedTurret,TurretList);
-					}
-					else if(MainGUI.selected >= 0) {
-						Instantiate(TurretList[MainGUI.selected],currentSpot.transform.position, Quaternion.identity);
-
-						MainGUI.selected = -1;
-					}
+					selectedTurret = cursorSpot;
 				}	
 			}
 		}
 	}
 	
-	public bool hasTurret(GameObject tile){
-		Vector3 tileCenter = tile.transform.position;
-		RaycastHit hit;
-		bool checkHit = Physics.Raycast(tileCenter,Vector3.up,out hit,layermask);
-		if(checkHit){
-			GameObject Turret = hit.collider.gameObject;
-			if( Turret.tag== "Turret"){
-				if(selectedTurret != null){
-					selectedTurret.renderer.material.color = Color.white;
-				}
-				selectedTurret = Turret;
-				selectedTurret.renderer.material.color = Color.green;
-				return true;
-			}
-		}
-		return false;
-		
-	}
-	
-	//finds the current Turret in the list
-	public static Turret findCurrentTurret(GameObject currentTurret, Turret[] TurretList){
-		foreach(Turret turret in TurretList){
-			if(currentTurret.GetComponent<Turret>() == turret)
-				return turret;
-		}
-		return null;
-	}
-	
-
 }
 
