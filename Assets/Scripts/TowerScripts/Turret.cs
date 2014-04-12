@@ -4,9 +4,11 @@ using System.Collections;
 public class Turret : MonoBehaviour {
 	
 	public GameObject target;
+	public GameObject projectile;
 	public int Power;
 	public GameObject turret;
 	public double attackspeed;
+	public bool sighted = false;
 	
 	// Use this for initialization
 	void Start () {
