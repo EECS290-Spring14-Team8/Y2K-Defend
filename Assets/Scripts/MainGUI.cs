@@ -11,8 +11,8 @@ public class MainGUI : MonoBehaviour {
 	}
 
 	public void OnGUI() {
-		GUI.Box (new Rect (0, 0, 100, 500), GUIContent.none);
-		if (GUI.Button(new Rect(10,10,10,10), "turret image")) {
+		GUI.Box (new Rect (0, 0, 100, Screen.height), GUIContent.none);
+		if (GUI.Button(new Rect(10,10,50,50), "turret image")) {
 			selected = 0;
 			GameManager.selectedTurret = null;
 		}

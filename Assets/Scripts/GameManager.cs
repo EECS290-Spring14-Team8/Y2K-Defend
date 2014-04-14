@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour {
 	public static Turret selectedScript;
 	
 	// Use this for initialization
-	void Start () {		//generateTurrets();
+	void Start () {
+		//generateTurrets();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour {
 		ally.Add(turret);
 	}*/
 
+
 	void deselectTurret(){
 		if(turretIsSelected && Input.GetKey(KeyCode.Escape)){
 			turretIsSelected = false;
@@ -40,19 +42,23 @@ public class GameManager : MonoBehaviour {
 	
 	void updateCursor(){
 		if (Input.GetMouseButtonDown(0)){
+			Debug.Log("click");
 			RaycastHit hit;
 			// Construct a ray from the current touch coordinates
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray,out hit,Mathf.Infinity,~layermask)) {
+			if (Physics.Raycast (ray,out hit,Mathf.Infinity)) {
 				GameObject cursorSpot = hit.collider.gameObject;
+				Debug.Log(cursorSpot);
 				string hitTag = cursorSpot.tag;
 				if(hitTag == "tower"){
-					cursorSpot.renderer.material.color = Color.blue;
+					//cursorSpot.renderer.material.color = Color.blue;
 					turretIsSelected = true;
-					if(selectedTurret != null & cursorSpot!= selectedTurret){
-						selectedTurret.renderer.material.color = Color.white;
-					}
+					//if(selectedTurret != null & cursorSpot!= selectedTurret){
+					//	selectedTurret.renderer.material.color = Color.white;
+					//}
 					selectedTurret = cursorSpot;
+					selectedScript = selectedTurret.GetComponent<Turret>();
+					Debug.Log("hit");
 				}	
 			}
 		}

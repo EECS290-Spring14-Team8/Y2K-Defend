@@ -19,6 +19,7 @@ public class FireWalltrigger : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			FireWall.dudes.Add (other.gameObject.GetComponent<Dude> ());
 			this.FireWall.sighted = true;
+			other.gameObject.GetComponent<Dude>().speed = Dude.dudespeed * .7;
 		}
 	}
 
@@ -28,6 +29,7 @@ public class FireWalltrigger : MonoBehaviour {
 			if (FireWall.dudes.Count == 0) {
 				FireWall.sighted = false;
 			}
+			other.gameObject.GetComponent<Dude>().speed = Dude.dudespeed;
 		}
 	}
 }

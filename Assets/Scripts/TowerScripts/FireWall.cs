@@ -11,7 +11,7 @@ public class FireWall : Turret {
 
 	// Use this for initialization
 	void Start () {
-		this.attackspeed = .5;
+		this.attackspeed = .5f;
 		particles = GetComponent<ParticleSystem> ();
 		particles.Pause ();
 	}
@@ -21,6 +21,7 @@ public class FireWall : Turret {
 		if (this.sighted && Time.time > ready) {
 			particles.Play();
 			this.shoot();
+			ready = Time.time + attackspeed;
 		}
 		if (!sighted) {
 			particles.Pause();		
@@ -29,6 +30,8 @@ public class FireWall : Turret {
 	}
 
 	new void shoot() {
-		
+		foreach (Dude x in dudes) {
+			x.takeDamage(this.Power);
+		}
 	}
 }

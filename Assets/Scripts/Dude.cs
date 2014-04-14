@@ -5,6 +5,8 @@ public class Dude : MonoBehaviour {
 
 	public int health = 100;
 	public int moneydropped;
+	public static double dudespeed = 10;
+	public double speed = 10;
 
 	// Use this for initialization
 	void Start () {
