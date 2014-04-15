@@ -5,6 +5,8 @@ public class MainMenu : MonoBehaviour {
 	private RaycastHit hitInfo;
 	public GameObject Turret;
 	public RotateBarrel barrelRotate;
+	public GameObject startText;
+	public GameObject instructionsText;
 	
 	// Use this for initialization
 	void Start () {
@@ -17,6 +19,7 @@ public class MainMenu : MonoBehaviour {
 		
 		
 		if( Physics.Raycast( Camera.main.ScreenPointToRay( Input.mousePosition ), out hitInfo ) ){
+
 			if(Input.GetMouseButtonDown(0)){
 				//loads the Game Scene
 				if(hitInfo.collider.name == "Start"){
@@ -35,9 +38,8 @@ public class MainMenu : MonoBehaviour {
 			} 
 			// stops turret firing when tower is not clicked anymore
 			if (Input.GetMouseButtonUp(0)) if(hitInfo.collider.name == "Basic3") barrelRotate.isFiring = false;
-
 			
 		}
 	}
-	
+
 }
