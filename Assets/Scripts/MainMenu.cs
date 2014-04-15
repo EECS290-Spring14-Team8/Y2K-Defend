@@ -18,15 +18,20 @@ public class MainMenu : MonoBehaviour {
 		
 		if( Physics.Raycast( Camera.main.ScreenPointToRay( Input.mousePosition ), out hitInfo ) ){
 			if(Input.GetMouseButtonDown(0)){
-				//loads the Game Scen
-				if(hitInfo.collider.name == "Tap to Begin"){
-					Application.LoadLevel(1);
+				//loads the Game Scene
+				if(hitInfo.collider.name == "Start"){
+					Application.LoadLevel(2);
 				}
+				//loads the instructions scene
+				if(hitInfo.collider.name == "Instructions"){
+					Application.LoadLevel (1);
+				}
+
 				//Fires the turret when tower is clicked
 				if(hitInfo.collider.name == "Basic3") {
 					barrelRotate.isFiring = true;
 				}
-				
+				 
 			} 
 			// stops turret firing when tower is not clicked anymore
 			if (Input.GetMouseButtonUp(0)) if(hitInfo.collider.name == "Basic3") barrelRotate.isFiring = false;
