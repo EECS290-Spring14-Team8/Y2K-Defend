@@ -12,6 +12,9 @@ public class FireWalltrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (FireWall.dudes.Count == 0) {
+			FireWall.sighted = false;		
+		}
 	
 	}
 

@@ -6,7 +6,7 @@ public class FireWall : Turret {
 
 	private float ready = 0f;
 	private ParticleSystem particles;
-	public List<Dude> dudes = new List<Dude>();
+	public ArrayList dudes = new ArrayList();
 	
 
 	// Use this for initialization
@@ -14,6 +14,7 @@ public class FireWall : Turret {
 		this.attackspeed = .5f;
 		particles = GetComponent<ParticleSystem> ();
 		particles.Pause ();
+		this.Power = 30;
 	}
 	
 	// Update is called once per frame
@@ -31,7 +32,13 @@ public class FireWall : Turret {
 
 	new void shoot() {
 		foreach (Dude x in dudes) {
-			x.takeDamage(this.Power);
+			if (x != null){
+				x.takeDamage(this.Power);
+			}
+			else{
+				dudes.Remove(x);
+			}
+
 		}
 	}
 }
