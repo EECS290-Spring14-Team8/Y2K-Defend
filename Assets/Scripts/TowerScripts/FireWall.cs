@@ -6,7 +6,7 @@ public class FireWall : Turret {
 
 	private float ready = 0f;
 	private ParticleSystem particles;
-	public ArrayList dudes = new ArrayList();
+	public List<Dude> dudes = new List<Dude>();
 	
 
 	// Use this for initialization
@@ -31,7 +31,15 @@ public class FireWall : Turret {
 	}
 
 	new void shoot() {
-		foreach (Dude x in dudes) {
+		for(int i = dudes.Count - 1; i>=0; i--){
+			if (dudes[i] != null){
+				dudes[i].takeDamage(this.Power);
+			}
+			else{
+				dudes.RemoveAt(i);
+			}
+		}
+		/*foreach (Dude x in dudes) {
 			if (x != null){
 				x.takeDamage(this.Power);
 			}
@@ -39,6 +47,6 @@ public class FireWall : Turret {
 				dudes.Remove(x);
 			}
 
-		}
+		}*/
 	}
 }
