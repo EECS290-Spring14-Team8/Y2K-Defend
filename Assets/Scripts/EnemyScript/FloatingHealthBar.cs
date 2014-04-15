@@ -11,7 +11,7 @@ public class FloatingHealthBar : MonoBehaviour {
 
 	// Sets the position of health bar with some offset
 	void Start () {
-		this.transform.localPosition = new Vector3(-1,5,0);
+		this.transform.localPosition = new Vector3(0,1,-1);
 		currentHealth = 100;
 		maxHealth = 100;
 	}
