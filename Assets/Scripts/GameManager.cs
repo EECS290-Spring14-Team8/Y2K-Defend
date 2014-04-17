@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour {
 			RaycastHit hit;
 			// Construct a ray from the current touch coordinates
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray,out hit,Mathf.Infinity)) {
+			if (Physics.Raycast (ray,out hit)) {
 				GameObject cursorSpot = hit.collider.gameObject;
 				Debug.Log(cursorSpot);
 				string hitTag = cursorSpot.tag;
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour {
 					//	selectedTurret.renderer.material.color = Color.white;
 					//}
 					selectedTurret = cursorSpot;
+					//selectedTurret.GetComponent<Halo>();
 					selectedScript = selectedTurret.GetComponent<Turret>();
 					Debug.Log("hit");
 				}	

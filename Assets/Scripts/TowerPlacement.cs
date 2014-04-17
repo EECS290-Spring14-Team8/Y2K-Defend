@@ -22,7 +22,7 @@ public class TowerPlacement : MonoBehaviour {
 	float towerGap;//the smallest distance allowed between towers
 	
 	public GUISkin mySkin;
-	
+
 	// Use this for initialization
 	void Start () {
 		selectedTower = towerPrefab1;
@@ -39,6 +39,7 @@ public class TowerPlacement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (tower != null) {
 			mousePos = Input.mousePosition;
 			if (Input.GetMouseButtonDown (0))
@@ -86,6 +87,7 @@ public class TowerPlacement : MonoBehaviour {
 	}
 	//when the mouse is clicked it places the turret at the location and creates another turret to follow the mouse
 	void OnMouseClick(){
+
 		Screen.showCursor = true;
 		if (CheckPosition ()) {
 						tower.tag = "tower";
@@ -98,9 +100,8 @@ public class TowerPlacement : MonoBehaviour {
 						Destroy (Aoe);
 						Destroy (tower);
 				}
-
 	}
-	
+		
 	GameObject InstantiateTower(){
 		tower = (GameObject)Instantiate (selectedTower, Vector3.zero, Quaternion.identity);
 		Aoe = (GameObject)Instantiate (aoePrefab, Vector3.zero, Quaternion.identity);
@@ -113,12 +114,17 @@ public class TowerPlacement : MonoBehaviour {
 		Rect tower1Rect = new Rect (20, 40, 80, 20) ;
 		Rect tower2Rect = new Rect (20, 70, 80, 20);
 		Rect tower3Rect = new Rect (20, 100, 80, 20);
+		Rect moneyRect = new Rect (10, 160, 100, 20);//shows how much money you have
 
 		GUI.skin = mySkin;
+		//does every button have its own skin?
+
 		// Make a background box
 		GUI.Box(boxRect, "Loader Menu");
 		//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
-		
+
+		GUI.Label (moneyRect, "Money - " + Money.amount.ToString() );
+
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 		if(GUI.Button (tower1Rect, new GUIContent("Tower 1", "Tower 1 Description"))) {
 			TowerPlacement.selectedTower = towerPrefab1;
