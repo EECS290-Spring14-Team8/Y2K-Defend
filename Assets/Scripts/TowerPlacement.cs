@@ -26,14 +26,14 @@ public class TowerPlacement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		selectedTower = towerPrefab1;
-		Screen.showCursor = false;
+		//Screen.showCursor = false;
 		//Aoe = (GameObject)Instantiate (aoePrefab, Vector3.zero, Quaternion.identity);
 		//InstantiateTower ();
 		
 		
 		//camera = Camera.current;
 		towerGap = 3;
-		aoeRadius = 5;
+		aoeRadius = 20;
 		aoePrefab.transform.localScale = new Vector3 (aoeRadius, .02f, aoeRadius);
 	}
 	
@@ -86,6 +86,7 @@ public class TowerPlacement : MonoBehaviour {
 	}
 	//when the mouse is clicked it places the turret at the location and creates another turret to follow the mouse
 	void OnMouseClick(){
+		Screen.showCursor = true;
 		if (CheckPosition ()) {
 						tower.tag = "tower";
 						Destroy (Aoe);
@@ -107,34 +108,47 @@ public class TowerPlacement : MonoBehaviour {
 		return tower;
 	}
 	void OnGUI () {
-		
+		//the various rectangles for boxes
+		Rect boxRect = new Rect (10, 10, 100, 140);
+		Rect tower1Rect = new Rect (20, 40, 80, 20) ;
+		Rect tower2Rect = new Rect (20, 70, 80, 20);
+		Rect tower3Rect = new Rect (20, 100, 80, 20);
+
 		GUI.skin = mySkin;
 		// Make a background box
-		GUI.Box(new Rect(10,10,100,140), "Loader Menu");
+		GUI.Box(boxRect, "Loader Menu");
 		//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
 		
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button (new Rect (20, 40, 80, 20),"Tower 1")) {
-			
+		if(GUI.Button (tower1Rect, new GUIContent("Tower 1", "Tower 1 Description"))) {
 			TowerPlacement.selectedTower = towerPrefab1;
 			Destroy (tower);
 			Destroy (Aoe);
 			InstantiateTower ();
-		}
-		
+			Screen.showCursor = false;
+		}//if the mouse hovers over the buttton then the tooltip appears describing the tower
+		if(tower1Rect.Contains (Event.current.mousePosition))
+			GUI.Label (new Rect(110,40,80,100), GUI.tooltip);
+
 		// Make the second button.
-		if(GUI.Button (new Rect (20, 70, 80, 20), "Tower 2")) {
+		if(GUI.Button (tower2Rect, new GUIContent("Tower 2", "Tower 2 Description"))) {
 			TowerPlacement.selectedTower = towerPrefab2;
 			Destroy (tower);
 			Destroy (Aoe);
 			InstantiateTower ();
-		}
+			Screen.showCursor = false;
+		}//tooltip describing the tower
+		if(tower2Rect.Contains (Event.current.mousePosition))
+			GUI.Label (new Rect(110,70,80,100), GUI.tooltip);
 		
-		if (GUI.Button (new Rect (20, 100, 80, 20), "Tower 3")) {
+		if (GUI.Button (tower3Rect , new GUIContent("Tower 3", "Tower 3 Description"))) {
 			TowerPlacement.selectedTower = towerPrefab3;
 			Destroy (tower);
 			Destroy (Aoe);
 			InstantiateTower ();
-		}
+			Screen.showCursor = false;
+		}//tooltip describing the tower
+		if(tower3Rect.Contains (Event.current.mousePosition))
+			GUI.Label (new Rect(110,100,80,100), GUI.tooltip);
 	}
 }
