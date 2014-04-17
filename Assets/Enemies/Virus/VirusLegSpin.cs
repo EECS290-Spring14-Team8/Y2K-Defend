@@ -3,7 +3,7 @@ using System.Collections;
 
 public class VirusLegSpin : MonoBehaviour {
 	public GameObject legs;
-	Vector3 rotationAmount = new Vector3(0,0,180f);
+	Vector3 rotationAmount = new Vector3(0,180f,0);
 
 	// Use this for initialization
 	void Start () {
