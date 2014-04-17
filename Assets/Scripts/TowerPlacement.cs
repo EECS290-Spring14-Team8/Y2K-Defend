@@ -5,7 +5,7 @@ public class TowerPlacement : MonoBehaviour {
 	
 	Vector3 mousePos;
 	public static GameObject selectedTower; //other scripts can change this object and change the selected tower
-	
+
 	public GameObject towerPrefab1;
 	public GameObject towerPrefab2;
 	public GameObject towerPrefab3;
@@ -87,13 +87,17 @@ public class TowerPlacement : MonoBehaviour {
 	//when the mouse is clicked it places the turret at the location and creates another turret to follow the mouse
 	void OnMouseClick(){
 		if (CheckPosition ()) {
-			tower.tag = "tower";
-			Destroy (Aoe);
-			InstantiateTower ();
-			Destroy(tower);
-			Destroy (Aoe);
-			Screen.showCursor = true;
-		}
+						tower.tag = "tower";
+						Destroy (Aoe);
+						InstantiateTower ();
+						Destroy (tower);
+						Destroy (Aoe);
+						Screen.showCursor = true;
+				} else {
+						Destroy (Aoe);
+						Destroy (tower);
+				}
+
 	}
 	
 	GameObject InstantiateTower(){
@@ -104,7 +108,7 @@ public class TowerPlacement : MonoBehaviour {
 	}
 	void OnGUI () {
 		
-		//GUI.skin = mySkin;
+		GUI.skin = mySkin;
 		// Make a background box
 		GUI.Box(new Rect(10,10,100,140), "Loader Menu");
 		//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
