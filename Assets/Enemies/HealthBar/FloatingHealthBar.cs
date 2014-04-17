@@ -4,14 +4,17 @@ using System.Collections;
 public class FloatingHealthBar : MonoBehaviour {
 	public GameObject greenBar;
 	public GameObject redBar;
-	
+	public float XOffset;	// amount to offset horizontally from (varies)
+	public float YOffset;	// amount to offset heightwise... "above" the enemy object 
+							// but that also makes it "closer" to the camera, making it appear bigger...
+	public float ZOffset;	// amount to offset vertically from object (varies)
 	public float currentHealth;
 	private float maxHealth;
 	private float temp;
 
 	// Sets the position of health bar with some offset
 	void Start () {
-		this.transform.localPosition = new Vector3(0,1,-1);
+		this.transform.localPosition = new Vector3(XOffset,YOffset,ZOffset);
 		currentHealth = 100;
 		maxHealth = 100;
 	}
