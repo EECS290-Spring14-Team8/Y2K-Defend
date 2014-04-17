@@ -7,6 +7,7 @@ public class Dude : MonoBehaviour {
 	public int moneydropped;
 	public static double dudespeed = 10;
 	public double speed = 10;
+	public int damage = 1;
 
 	// Use this for initialization
 	void Start () {
