@@ -19,5 +19,6 @@ public class CameraMovement : MonoBehaviour {
 				this.transform.position -= Vector3.forward * movementSpeed * Time.deltaTime;
 		if (Input.GetKey ("d"))
 				this.transform.position += Vector3.right * movementSpeed * Time.deltaTime;
+
 	}
 }
