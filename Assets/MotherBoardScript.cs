@@ -29,6 +29,7 @@ public class MotherBoardScript : MonoBehaviour {
 		if (other.gameObject.tag.Equals("Enemy")) {
 			this.takeDamage(other.gameObject.GetComponent<Dude>().damage);
 			Destroy(other.gameObject);
+			UnitSpawner.spawned--;
 		}
 	}
 }

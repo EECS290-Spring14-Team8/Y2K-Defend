@@ -17,9 +17,14 @@ public class Dude : MonoBehaviour {
 	public void takeDamage(int damage) {
 		health -= damage;
 		if (health <= 0) {
-			//deal with money
-			Destroy(this.gameObject);
+			this.die();
 		}
+	}
+
+	public void die() {
+		//deal with money
+		UnitSpawner.spawned--;
+		Destroy(this.gameObject);
 	}
 	
 	// Update is called once per frame

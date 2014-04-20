@@ -109,6 +109,12 @@ public class TowerPlacement : MonoBehaviour {
 		return tower;
 	}
 	void OnGUI () {
+		if (!UnitSpawner.spawnReady && UnitSpawner.spawned == 0) {
+			if(GUI.Button(new Rect(Screen.width - 50,10,50,50), "Start Wave")) {
+				UnitSpawner.spawnReady = true;
+			}
+		}
+
 		//the various rectangles for boxes
 		Rect boxRect = new Rect (10, 10, 100, 140);
 		Rect tower1Rect = new Rect (20, 40, 80, 20) ;
