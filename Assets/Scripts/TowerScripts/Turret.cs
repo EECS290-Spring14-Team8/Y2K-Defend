@@ -7,6 +7,7 @@ public class Turret : MonoBehaviour {
 	public int Power;
 	public GameObject turret;
 	public float attackspeed;
+	public float timeTillNextAtt = 0;
 	public bool sighted = false;
 	public GameObject upgrade;
 	public GameObject target;
@@ -18,7 +19,10 @@ public class Turret : MonoBehaviour {
 	}
 	
 	public void shoot() {
-		//fire at target
+		if (Time.time > timeTillNextAtt) {
+			target.gameObject.GetComponent<Dude>().takeDamage(this.Power);
+			timeTillNextAtt = Time.time + attackspeed;
+		}
 	}
 
 	public void retarget() {
@@ -40,11 +44,12 @@ public class Turret : MonoBehaviour {
 		if (target == null) {
 			retarget();		
 		}
-		/*if (target != null) {
+		if (target != null) {
 			Vector3 amttorotate;
 			amttorotate = Vector3.RotateTowards (turret.transform.forward, target.transform.position - turret.transform.position, 6f, 6f);	
-			Turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
-		}*/
+			turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
+			this.shoot();
+		}
 
 		// turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
 	}
