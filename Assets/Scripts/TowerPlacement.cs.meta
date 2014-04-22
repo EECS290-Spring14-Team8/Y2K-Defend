@@ -10,7 +10,8 @@ MonoImporter:
   - Posotive: {fileID: 2100000, guid: 9bdab5a837f9edc4a88ce1fe44484651, type: 2}
   - Negative: {fileID: 2100000, guid: ed0a6bcbe5d06ef438194d6358265f23, type: 2}
   - camera: {instanceID: 0}
-  - mySkin: {fileID: 11400000, guid: 1f93b0916f822f24a8bd9b30323e3333, type: 2}
+  - NegativeSkin: {fileID: 11400000, guid: d6a5c2dc96a367b4bb8430ca16c9ac6b, type: 2}
+  - DefaultSkin: {fileID: 11400000, guid: 1f93b0916f822f24a8bd9b30323e3333, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

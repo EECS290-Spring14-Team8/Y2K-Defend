@@ -56,7 +56,10 @@ public class GameManager : MonoBehaviour {
 					//if(selectedTurret != null & cursorSpot!= selectedTurret){
 					//	selectedTurret.renderer.material.color = Color.white;
 					//}
+					if(selectedTurret != null)//turns the light off of the previous turret
+						selectedTurret.GetComponent<Light>().enabled = false;
 					selectedTurret = cursorSpot;
+					selectedTurret.GetComponent<Light>().enabled = true;//highlights the selected turret
 					//selectedTurret.GetComponent<Halo>();
 					selectedScript = selectedTurret.GetComponent<Turret>();
 					Debug.Log("hit");
