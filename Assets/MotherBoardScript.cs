@@ -28,7 +28,7 @@ public class MotherBoardScript : MonoBehaviour {
 	void OnCollisionEnter(Collision other) {
 		if (other.gameObject.tag.Equals("Enemy")) {
 			this.takeDamage(other.gameObject.GetComponent<Dude>().damage);
-			Destroy(other.gameObject);
+			Destroy(other.gameObject.transform.parent);
 			UnitSpawner.spawned--;
 		}
 	}

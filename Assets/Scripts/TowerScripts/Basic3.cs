@@ -13,13 +13,12 @@ public class Basic3 : Turret {
 		if (target == null) {
 			retarget();		
 		}
-		/*if (target != null) {
+		if (target != null) {
 			Vector3 amttorotate;
-			amttorotate = Vector3.RotateTowards (turret.transform.forward, target.transform.position - turret.transform.position, 6f, 6f);	
-			Turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
-		}*/
-		
-		// turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
-	
+			amttorotate = Vector3.RotateTowards (turret.transform.position, target.transform.position - turret.transform.position, 6f, 6f);	
+			turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
+			this.shoot();
+		}
+
 	}
 }

@@ -16,9 +16,6 @@ public class BasicTurretTrigger : MonoBehaviour {
 	
 	}
 
-	void retarget() {
-
-	}
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag.Equals("Enemy")) {
