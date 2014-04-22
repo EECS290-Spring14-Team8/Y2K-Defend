@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
 		if(turretIsSelected && Input.GetKey(KeyCode.Escape)){
 			turretIsSelected = false;
 			selectedScript = null;
-			selectedTurret.renderer.material.color = Color.white;
+			//selectedTurret.renderer.material.color = Color.white;
 			selectedTurret = null;
 		}
 	}

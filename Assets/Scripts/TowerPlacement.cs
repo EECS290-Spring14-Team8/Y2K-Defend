@@ -44,8 +44,17 @@ public class TowerPlacement : MonoBehaviour {
 			mousePos = Input.mousePosition;
 			if (Input.GetMouseButtonDown (0))
 				OnMouseClick ();
-			mousePos.z = camera.transform.position.y - .3f;//height of the camera
-			tower.transform.position = camera.ScreenToWorldPoint (mousePos);
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast(ray,out hit,Mathf.Infinity,1<<8)){
+				Debug.Log("hit map");
+				tower.transform.position = hit.point;
+			}
+			else{
+				mousePos.z = camera.transform.position.y - .3f;//height of the camera
+				tower.transform.position = camera.ScreenToWorldPoint (mousePos);
+			}
+
 			CheckPosition ();
 			Aoe.transform.position = tower.transform.position;
 		}
