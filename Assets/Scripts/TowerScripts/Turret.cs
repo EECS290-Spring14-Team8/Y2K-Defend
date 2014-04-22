@@ -25,8 +25,8 @@ public class Turret : MonoBehaviour {
 			timeTillNextAtt = Time.time + attackspeed;
 
 			//muzzleflash
-			GameObject clone = (GameObject)Instantiate(muzzFlash, turret.transform.localPosition, turret.transform.localRotation);
-			Destroy(clone,0.01f);
+			GameObject clone = (GameObject)Instantiate(muzzFlash, turret.transform.position, turret.transform.localRotation);
+			Destroy(clone,0.02f);
 
 			audio.Play();
 		}
