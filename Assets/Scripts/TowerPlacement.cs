@@ -53,7 +53,6 @@ public class TowerPlacement : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast(ray,out hit,Mathf.Infinity,1<<8)){
-				Debug.Log("hit map");
 				tower.transform.position = hit.point;
 			}
 			else{

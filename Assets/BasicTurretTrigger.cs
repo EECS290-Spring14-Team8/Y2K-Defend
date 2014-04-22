@@ -21,9 +21,9 @@ public class BasicTurretTrigger : MonoBehaviour {
 		if (other.tag.Equals("Enemy")) {
 			turret.sighted = true;
 			sighted++;
-			if (turret.target == null) {
+			/*if (turret.target == null) {
 				turret.target = other.gameObject;
-			}
+			}*/
 		}
 
 	}

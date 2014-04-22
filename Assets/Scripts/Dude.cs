@@ -24,7 +24,7 @@ public class Dude : MonoBehaviour {
 	public void die() {
 		//deal with money
 		UnitSpawner.spawned--;
-		Destroy(this.gameObject.transform.parent);
+		Destroy(gameObject);
 	}
 	
 	// Update is called once per frame

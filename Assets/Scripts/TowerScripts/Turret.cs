@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class Turret : MonoBehaviour {
 
 	public GameObject projectile;
@@ -21,6 +22,7 @@ public class Turret : MonoBehaviour {
 	
 	public void shoot() {
 		if (Time.time > timeTillNextAtt) {
+			try{
 			target.gameObject.GetComponent<Dude>().takeDamage(this.Power);
 			timeTillNextAtt = Time.time + attackspeed;
 
@@ -29,6 +31,10 @@ public class Turret : MonoBehaviour {
 			Destroy(clone,0.02f);
 
 			audio.Play();
+			}
+			catch(System.Exception e){
+				retarget();
+			}
 		}
 	}
 
@@ -38,8 +44,10 @@ public class Turret : MonoBehaviour {
 			if (x != null) {
 				float d = Vector3.Distance(this.gameObject.transform.position, x.transform.position);
 				if (d < range) {
+					target = x;
 					if (target != null && Vector3.Distance(this.gameObject.transform.position, target.transform.position) < d) {
 						target = x;
+
 					}
 				}
 			}
