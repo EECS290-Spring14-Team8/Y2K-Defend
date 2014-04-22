@@ -12,6 +12,7 @@ public class Turret : MonoBehaviour {
 	public GameObject upgrade;
 	public GameObject target;
 	public int range = 30;
+	public GameObject muzzFlash;
 	
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,12 @@ public class Turret : MonoBehaviour {
 		if (Time.time > timeTillNextAtt) {
 			target.gameObject.GetComponent<Dude>().takeDamage(this.Power);
 			timeTillNextAtt = Time.time + attackspeed;
+
+			//muzzleflash
+			GameObject clone = (GameObject)Instantiate(muzzFlash, turret.transform.localPosition, turret.transform.localRotation);
+			Destroy(clone,0.01f);
+
+			audio.Play();
 		}
 	}
 
