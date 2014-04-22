@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour {
 
 	void deselectTurret(){
 		if(turretIsSelected && Input.GetKey(KeyCode.Escape)){
+			selectedTurret.GetComponent<Light>().enabled = false;
 			turretIsSelected = false;
 			selectedScript = null;
 			//selectedTurret.renderer.material.color = Color.white;
