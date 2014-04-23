@@ -7,9 +7,14 @@ public class MainMenu : MonoBehaviour {
 	public RotateBarrel barrelRotate;
 	public GameObject startText;
 	public GameObject instructionsText;
+	private static bool firstStart = true;
 	
 	// Use this for initialization
 	void Start () {
+		if (firstStart)
+			firstStart = false;
+		else 
+			audio.Play ();
 		
 	}
 	
@@ -34,6 +39,7 @@ public class MainMenu : MonoBehaviour {
 
 				//Fires the turret when tower is clicked
 				if(hitInfo.collider.name == "Basic3") {
+					audio.Play();
 					barrelRotate.isFiring = true;
 				}
 				 
