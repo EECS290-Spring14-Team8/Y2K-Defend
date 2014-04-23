@@ -23,7 +23,9 @@ public class MainMenu : MonoBehaviour {
 			if(Input.GetMouseButtonDown(0)){
 				//loads the Game Scene
 				if(hitInfo.collider.name == "Start"){
-					Application.LoadLevel(2);
+
+					// LOAD GAME SCENE LEVEL!
+					Application.LoadLevel(3);
 				}
 				//loads the instructions scene
 				if(hitInfo.collider.name == "Instructions"){
