@@ -149,15 +149,20 @@ public class TowerPlacement : MonoBehaviour {
 		GUI.Box(boxRect, "Loader Menu");
 		//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
 		
-		GUI.Label (moneyRect, "Money: " + Money.amount.ToString() );
+		GUI.Label (moneyRect, "Money: " + Money.getMoneyAmount().ToString() );
 		
 		GUI.skin = Button1Skin;
 		
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 		if(GUI.Button (tower1Rect, new GUIContent("Tower 1", "Tower 1 Description"))) {
+			if (	// if not enough money, dont let this happen
+			    	//
+
+		
 			TowerPlacement.selectedTower = towerPrefab1;
 			Destroy (tower);
 			Destroy (Aoe);
+			Money.adjustMoneyAmount(-100);
 			InstantiateTower ();
 			Screen.showCursor = false;
 		}//if the mouse hovers over the buttton then the tooltip appears describing the tower

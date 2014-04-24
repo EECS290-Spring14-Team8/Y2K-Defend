@@ -8,6 +8,7 @@ public class Dude : MonoBehaviour {
 	public static double dudespeed = 10;
 	public double speed = 10;
 	public int damage = 1;
+	public Money money;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +23,7 @@ public class Dude : MonoBehaviour {
 	}
 
 	public void die() {
-		//deal with money
+		Money.adjustMoneyAmount (50);
 		UnitSpawner.spawned--;
 		Destroy(gameObject);
 	}

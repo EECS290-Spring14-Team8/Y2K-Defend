@@ -15,7 +15,11 @@ public class Money : MonoBehaviour {
 	}
 	
 	public static int getMoneyAmount(){
-				return amount;
-		}
+		return amount;
+	}
+
+	public static void adjustMoneyAmount(int adj) {
+		amount += adj;
+	}
 
 }
