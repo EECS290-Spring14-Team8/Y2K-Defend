@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
-	float movementSpeed;
+	public float movementSpeed;
 	float zoomSpeed;
 	// Use this for initialization
 	void Start () {
-		movementSpeed = 20;
+
 	}
 	
 	// Update is called once per frame
