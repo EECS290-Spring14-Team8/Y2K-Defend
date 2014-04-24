@@ -20,18 +20,21 @@ public class UnitSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(numUnits == 0){
+		if(numUnits <= 0){
 			waveCompleted += 1;
 			spawnReady = false;
 			//this will need some testing
-			numUnits += (int)waveCompleted*5;
+			numUnits += (int)waveCompleted*5 + 10;
 			updateRandom();
 		}
+		if(spawned<=0)
+			spawned =0;
 		if(spawnReady){
 			spawnUnit();
 		}
 	}
 	void spawnUnit(){
+		Debug.Log(spawned);
 		int select;
 		select = Random.Range(0,100);
 		if(select < unit1Range){

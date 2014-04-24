@@ -12,7 +12,7 @@ public class MotherBoardScript : MonoBehaviour {
 		thisMat.color = Color.green;
 	}
 
-	void takeDamage(int damage) {
+	public void takeDamage(int damage) {
 		health -= damage;
 		thisMat.color = Color.Lerp (thisMat.color, Color.red, .01f * damage);
 	}
@@ -20,16 +20,19 @@ public class MotherBoardScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//this.takeDamage (2);
-		if (health <= 200) {
+		if (health <= 0) {
 			//gameover condition		
+			Application.LoadLevel(2);
 		}
+
 	}
 
-	void OnCollisionEnter(Collision other) {
+	/*void OnCollisionEnter(Collision other) {
 		if (other.gameObject.tag.Equals("Enemy")) {
+			Debug.Log("lost health");
 			this.takeDamage(other.gameObject.GetComponent<Dude>().damage);
-			Destroy(other.gameObject.transform.parent);
+			Destroy(other.gameObject);
 			UnitSpawner.spawned--;
 		}
-	}
+	}*/
 }

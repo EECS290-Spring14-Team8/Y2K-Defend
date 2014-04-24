@@ -26,10 +26,21 @@ public class Dude : MonoBehaviour {
 		Money.adjustMoneyAmount (50);
 		UnitSpawner.spawned--;
 		Destroy(gameObject);
+		Debug.Log(UnitSpawner.spawned);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit){
+		if(hit.gameObject.tag == "MotherBoard"){
+			MotherBoardScript m = hit.gameObject.GetComponent<MotherBoardScript>();
+			m.takeDamage(damage);
+			UnitSpawner.spawned--;
+			Destroy(gameObject);
+		}
+
 	}
 }
