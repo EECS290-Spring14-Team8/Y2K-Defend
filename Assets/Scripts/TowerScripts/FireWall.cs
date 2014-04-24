@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class FireWall : Turret {
 
-	private float ready = 0f;
-	private ParticleSystem particles;
+	public float ready = 0f;
+	public ParticleSystem particles;
 	public List<Dude> dudes = new List<Dude>();
 	
 

@@ -80,9 +80,11 @@ public class Turret : MonoBehaviour {
 	void OnGUI(){
 		if (GameManager.selectedScript == this) {
 			GUI.Box (new Rect (100, Screen.height - 100, Screen.width - 500, 100), GUIContent.none);
-			if (GUI.Button(new Rect(110,Screen.height-90,100,50), "upgrade")) {
-				if(this.upgrade != null){
-				Upgrade ();
+			if (this.upgrade != null){
+				if (GUI.Button(new Rect(110,Screen.height-90,100,50), "upgrade")) {
+					if(this.upgrade != null){
+					Upgrade ();
+					}
 				}
 			}
 		}

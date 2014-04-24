@@ -155,8 +155,8 @@ public class TowerPlacement : MonoBehaviour {
 		
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 		if(GUI.Button (tower1Rect, new GUIContent("Tower 1", "Tower 1 Description"))) {
-			if (	// if not enough money, dont let this happen
-			    	//
+			if (true	/* if not enough money, dont let this happen*/ )
+			    	
 
 		
 			TowerPlacement.selectedTower = towerPrefab1;

@@ -7,7 +7,7 @@ public class FireWalltrigger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		this.gameObject.GetComponent<SphereCollider> ().radius = FireWall.range;
 	}
 	
 	// Update is called once per frame
