@@ -35,8 +35,8 @@ public class TowerPlacement : MonoBehaviour {
 		
 		//camera = Camera.current;
 		towerGap = 3;
-		aoeRadius = 20;
-		aoePrefab.transform.localScale = new Vector3 (aoeRadius, .02f, aoeRadius);
+		aoeRadius = 30;
+		aoePrefab.transform.localScale = new Vector3 (2*aoeRadius, .02f, 2*aoeRadius);
 		
 		Button1Skin = DefaultSkin;
 		Button2Skin = DefaultSkin;
