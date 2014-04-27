@@ -73,6 +73,7 @@ public class Turret : MonoBehaviour {
 		Vector3 oldpos = this.gameObject.transform.position;
 		GameManager.selectedTurret = (GameObject)Instantiate(this.upgrade, oldpos, Quaternion.identity);
 		GameManager.selectedScript = GameManager.selectedTurret.GetComponent<Turret>();
+		GameManager.selectedTurret.tag = "tower";
 		Destroy(this.gameObject);
 		return GameManager.selectedScript;
 	}

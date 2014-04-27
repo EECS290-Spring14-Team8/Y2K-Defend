@@ -25,6 +25,7 @@ public class UnitSpawner : MonoBehaviour {
 			spawnReady = false;
 			//this will need some testing
 			numUnits += (int)waveCompleted*5 + 10;
+			spawned += (int)waveCompleted*5 + 10;
 			updateRandom();
 		}
 		if(spawned<=0)
@@ -46,7 +47,6 @@ public class UnitSpawner : MonoBehaviour {
 		GameObject unit = (GameObject)Instantiate(enemyUnits[select],transform.position,transform.rotation);
 		unit.GetComponent<AIPathFinder>().target = target;
 		numUnits -= 1;
-		spawned++;
 	}
 	//updates the ranges for the different types of units
 	void updateRandom(){
