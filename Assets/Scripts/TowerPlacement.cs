@@ -81,6 +81,18 @@ public class TowerPlacement : MonoBehaviour {
 			Aoe.transform.position = tower.transform.position;
 				}*/
 	}
+
+	bool CheckTowerPosition(){//sees if the tower is on the raised portion of the map or in one of the valleys
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		RaycastHit hit;
+		if (Physics.Raycast(ray,out hit,Mathf.Infinity,1<<8)){
+			return true;
+		}
+		else{
+			mousePos.z = camera.transform.position.y - .3f;//height of the camera
+			return false;
+		}
+		}
 	//checks to see if the current positioin is valid for the turret
 	bool CheckPosition(){
 		//checks to see if the tower is out of bounds
@@ -88,6 +100,10 @@ public class TowerPlacement : MonoBehaviour {
 			Aoe.renderer.material = Negative;
 			return false;
 		}*/
+		if (!CheckTowerPosition()) {//if the tower is in the trenches where you can't place it
+			Aoe.renderer.material = Negative;
+			return false;
+				}
 		towerList = GameObject.FindGameObjectsWithTag ("tower");
 		for (int i=0; i<towerList.Length; i++) {
 			float distance = Vector3.Distance (towerList[i].transform.position, tower.transform.position);
