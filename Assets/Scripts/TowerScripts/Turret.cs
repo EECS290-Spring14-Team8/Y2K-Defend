@@ -3,7 +3,7 @@ using System.Collections;
 
 
 public class Turret : MonoBehaviour {
-
+	
 	public GameObject projectile;
 	public int Power;
 	public GameObject turret;
@@ -23,21 +23,21 @@ public class Turret : MonoBehaviour {
 	public void shoot() {
 		if (Time.time > timeTillNextAtt) {
 			try{
-			target.gameObject.GetComponent<Dude>().takeDamage(this.Power);
-			timeTillNextAtt = Time.time + attackspeed;
-
-			//muzzleflash
-			GameObject clone = (GameObject)Instantiate(muzzFlash, turret.transform.position, turret.transform.localRotation);
-			Destroy(clone,0.02f);
-
-			audio.Play();
+				target.gameObject.GetComponent<Dude>().takeDamage(this.Power);
+				timeTillNextAtt = Time.time + attackspeed;
+				
+				//muzzleflash
+				GameObject clone = (GameObject)Instantiate(muzzFlash, turret.transform.position, turret.transform.localRotation);
+				Destroy(clone,0.02f);
+				
+				audio.Play();
 			}
 			catch(System.Exception e){
 				retarget();
 			}
 		}
 	}
-
+	
 	public void retarget() {
 		GameObject[] dudes = GameObject.FindGameObjectsWithTag("Enemy");
 		foreach(GameObject x in dudes) {
@@ -47,7 +47,7 @@ public class Turret : MonoBehaviour {
 					target = x;
 					if (target != null && Vector3.Distance(this.gameObject.transform.position, target.transform.position) < d) {
 						target = x;
-
+						
 					}
 				}
 			}
@@ -65,10 +65,10 @@ public class Turret : MonoBehaviour {
 			turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
 			this.shoot();
 		}
-
+		
 		// turret.transform.rotation = Quaternion.LookRotation (amttorotate, new Vector3 (0f, 1f, 0f));
 	}
-
+	
 	Turret Upgrade(){
 		Vector3 oldpos = this.gameObject.transform.position;
 		GameManager.selectedTurret = (GameObject)Instantiate(this.upgrade, oldpos, Quaternion.identity);
@@ -76,16 +76,22 @@ public class Turret : MonoBehaviour {
 		Destroy(this.gameObject);
 		return GameManager.selectedScript;
 	}
-
+	
 	void OnGUI(){
 		if (GameManager.selectedScript == this) {
-			GUI.Box (new Rect (100, Screen.height - 100, Screen.width - 500, 100), GUIContent.none);
+			GUI.Box (new Rect (100, Screen.height - 70, 120, 100), GUIContent.none);
 			if (this.upgrade != null){
-				if (GUI.Button(new Rect(110,Screen.height-90,100,50), "upgrade")) {
-					if(this.upgrade != null){
-					Upgrade ();
+				if (Money.getMoneyAmount() < 100)
+					GUI.Button(new Rect(110,Screen.height-60,100,50), "Insufficient\nGold!");
+				else {
+					if (GUI.Button(new Rect(110,Screen.height-60,100,50), "Upgrade\n(100 Gold)")) {
+						Money.adjustMoneyAmount(-100);
+						Upgrade ();
 					}
 				}
+			}
+			else {
+				GUI.Button(new Rect(110,Screen.height-60,100,50), "Cannot be\nupgraded");
 			}
 		}
 	}

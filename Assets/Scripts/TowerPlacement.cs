@@ -24,7 +24,7 @@ public class TowerPlacement : MonoBehaviour {
 	GUISkin Button1Skin;
 	GUISkin Button2Skin;
 	GUISkin Button3Skin;
-	
+
 	// Use this for initialization
 	void Start () {
 		selectedTower = towerPrefab1;
@@ -59,7 +59,7 @@ public class TowerPlacement : MonoBehaviour {
 				mousePos.z = camera.transform.position.y - .3f;//height of the camera
 				tower.transform.position = camera.ScreenToWorldPoint (mousePos);
 			}
-
+			
 			CheckPosition ();
 			Aoe.transform.position = tower.transform.position;
 		}
@@ -128,7 +128,7 @@ public class TowerPlacement : MonoBehaviour {
 	
 	void OnGUI () {
 		if (!UnitSpawner.spawnReady && UnitSpawner.spawned == 0) {
-			if(GUI.Button(new Rect(Screen.width - 50,10,50,50), "Start Wave")) {
+			if(GUI.Button(new Rect(Screen.width - 110,10,100,50), "Start Wave")) {
 				UnitSpawner.spawnReady = true;
 			}
 		}
@@ -136,38 +136,48 @@ public class TowerPlacement : MonoBehaviour {
 		
 		
 		//the various rectangles for boxes
-		Rect boxRect = new Rect (10, 10, 100, 140);
-		Rect tower1Rect = new Rect (20, 40, 80, 20) ;
-		Rect tower2Rect = new Rect (20, 70, 80, 20);
-		Rect tower3Rect = new Rect (20, 100, 80, 20);
-		Rect moneyRect = new Rect (10, 160, 100, 20);//shows how much money you have
+		Rect boxRect = new Rect (10, 10, 110, 140);
+		Rect tower1Rect = new Rect (20, 40, 90, 25) ;
+		Rect tower2Rect = new Rect (20, 70, 90, 25);
+		Rect tower3Rect = new Rect (20, 100, 90, 25);
+		Rect moneyRect = new Rect (10, 160, 100, 25);	//shows how much money you have
 		
 		GUI.skin = DefaultSkin;
 		//does every button have its own skin?
 		
 		// Make a background box
-		GUI.Box(boxRect, "Loader Menu");
+		GUI.Box(boxRect, "Tower Menu");
 		//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
 		
-		GUI.Label (moneyRect, "Money: " + Money.getMoneyAmount().ToString() );
+		GUI.Label (moneyRect, " Money: " + Money.getMoneyAmount().ToString() );
 		
 		GUI.skin = Button1Skin;
-		
-		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button (tower1Rect, new GUIContent("Tower 1", "Tower 1 Description"))) {
-			if (true	/* if not enough money, dont let this happen*/ )
-			    	
 
-		
-			TowerPlacement.selectedTower = towerPrefab1;
-			Destroy (tower);
-			Destroy (Aoe);
-			Money.adjustMoneyAmount(-100);
-			InstantiateTower ();
-			Screen.showCursor = false;
-		}//if the mouse hovers over the buttton then the tooltip appears describing the tower
-		if(tower1Rect.Contains (Event.current.mousePosition))
-			GUI.Label (new Rect(110,40,80,100), GUI.tooltip);
+		if(GUI.Button(tower1Rect, new GUIContent("Basic Tower"))) {
+			// nothing happens when you don't have enough $$$
+			if (Money.getMoneyAmount() >= 100) {
+				TowerPlacement.selectedTower = towerPrefab1;
+				Destroy (tower);
+				Destroy (Aoe);
+				Money.adjustMoneyAmount(-100);
+				InstantiateTower ();
+
+				Screen.showCursor = false;
+			}
+			else {
+
+			}
+			
+		}	//if the mouse hovers over the buttton then the tooltip appears describing the tower
+		if (tower1Rect.Contains (Event.current.mousePosition)) {
+			if (Money.getMoneyAmount() >= 100) {
+				GUI.tooltip = "100 Gold. Can be upgraded.";
+			}
+			else {
+				GUI.tooltip = "Cannot afford!";
+			}
+			GUI.Label (new Rect (120, 40, 200, 120), GUI.tooltip);
+		}
 		
 		GUI.skin = Button2Skin;
 		
