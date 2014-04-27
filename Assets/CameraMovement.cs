@@ -5,12 +5,16 @@ public class CameraMovement : MonoBehaviour {
 	public float scrollSpeed;
 	public float scrollArea;
 	public float zoomSpeed;
-	public float cameraPositionMin;
-	public float cameraPositionMax;
+	public float xcameraPositionMin;
+	public float xcameraPositionMax;
+	public float ycameraPositionMin;
+	public float ycameraPositionMax;
 	public float cameraDistanceMin;
 	public float cameraDistanceMax;
 	private float cameraDistance;
 	private float currentDistance;
+	public float zoomConstant;
+	public float changeSpeed;
 
 
 	// Use this for initialization
@@ -37,11 +41,16 @@ public class CameraMovement : MonoBehaviour {
 		if (mPosX >= Screen.width-scrollArea) {transform.Translate(Vector3.right * scrollSpeed * Time.deltaTime);}
 		if (mPosY < scrollArea) {transform.Translate(Vector3.up * -scrollSpeed * Time.deltaTime);}
 		if (mPosY >= Screen.height-scrollArea) {transform.Translate(Vector3.up * scrollSpeed * Time.deltaTime);}
+		float xposition = transform.position.x;
+		float zposition = transform.position.z;
+
 
 		cameraDistance = -Input.GetAxis("Mouse ScrollWheel") * zoomSpeed + currentDistance;
 		cameraDistance = Mathf.Clamp(cameraDistance, cameraDistanceMin, cameraDistanceMax);
 		Camera.main.orthographicSize = Mathf.Lerp(currentDistance,cameraDistance,Time.deltaTime);
-		
+
+		transform.position = Vector3.Lerp(transform.position, new Vector3(Mathf.Clamp(xposition,xcameraPositionMin/cameraDistance*zoomConstant, xcameraPositionMax/cameraDistance*zoomConstant),transform.position.y,Mathf.Clamp(zposition,ycameraPositionMin/cameraDistance*zoomConstant, ycameraPositionMax/cameraDistance*zoomConstant)),Time.deltaTime * changeSpeed);
+
 
 
 	}
