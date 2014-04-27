@@ -50,6 +50,8 @@ public class TowerPlacement : MonoBehaviour {
 			mousePos = Input.mousePosition;
 			if (Input.GetMouseButtonDown (0))
 				OnMouseClick ();
+			if(Input.GetKeyDown ("escape"))
+				OnEscapeClick();
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast(ray,out hit,Mathf.Infinity,1<<8)){
@@ -131,6 +133,12 @@ public class TowerPlacement : MonoBehaviour {
 			Destroy (tower);
 		}
 	}
+
+	void OnEscapeClick(){
+		Screen.showCursor = true;
+		Destroy (Aoe);
+		Destroy (tower);
+		}
 	
 	GameObject InstantiateTower(){
 		tower = (GameObject)Instantiate (selectedTower, Vector3.zero, Quaternion.identity);
@@ -143,81 +151,80 @@ public class TowerPlacement : MonoBehaviour {
 	public GUISkin DefaultSkin;
 	
 	void OnGUI () {
-		if (!UnitSpawner.spawnReady && UnitSpawner.spawned == 0) {
-			if(GUI.Button(new Rect(Screen.width - 110,10,100,50), "Start Wave")) {
-				UnitSpawner.spawnReady = true;
-			}
-		}
+				if (!UnitSpawner.spawnReady && UnitSpawner.spawned == 0) {
+						if (GUI.Button (new Rect (Screen.width - 110, 10, 100, 50), "Start Wave")) {
+								UnitSpawner.spawnReady = true;
+						}
 		
 		
 		
-		//the various rectangles for boxes
-		Rect boxRect = new Rect (10, 10, 110, 140);
-		Rect tower1Rect = new Rect (20, 40, 90, 25) ;
-		Rect tower2Rect = new Rect (20, 70, 90, 25);
-		Rect tower3Rect = new Rect (20, 100, 90, 25);
-		Rect moneyRect = new Rect (10, 160, 100, 25);	//shows how much money you have
 		
-		GUI.skin = DefaultSkin;
-		//does every button have its own skin?
+						//the various rectangles for boxes
+						Rect boxRect = new Rect (10, 10, 110, 140);
+						Rect tower1Rect = new Rect (20, 40, 90, 25);
+						Rect tower2Rect = new Rect (20, 70, 90, 25);
+						Rect tower3Rect = new Rect (20, 100, 90, 25);
+						Rect moneyRect = new Rect (10, 160, 100, 25);	//shows how much money you have
 		
-		// Make a background box
-		GUI.Box(boxRect, "Tower Menu");
-		//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
+						GUI.skin = DefaultSkin;
+						//does every button have its own skin?
 		
-		GUI.Label (moneyRect, " Money: " + Money.getMoneyAmount().ToString() );
+						// Make a background box
+						GUI.Box (boxRect, "Tower Menu");
+						//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
 		
-		GUI.skin = Button1Skin;
+						GUI.Label (moneyRect, " Money: " + Money.getMoneyAmount ().ToString ());
+		
+						GUI.skin = Button1Skin;
 
-		if(GUI.Button(tower1Rect, new GUIContent("Basic Tower"))) {
-			// nothing happens when you don't have enough $$$
-			if (Money.getMoneyAmount() >= 100) {
-				TowerPlacement.selectedTower = towerPrefab1;
-				Destroy (tower);
-				Destroy (Aoe);
-				Money.adjustMoneyAmount(-100);
-				InstantiateTower ();
+						if (GUI.Button (tower1Rect, new GUIContent ("Basic Tower"))) {
+								// nothing happens when you don't have enough $$$
+								if (Money.getMoneyAmount () >= 100) {
+										TowerPlacement.selectedTower = towerPrefab1;
+										Destroy (tower);
+										Destroy (Aoe);
+										Money.adjustMoneyAmount (-100);
+										InstantiateTower ();
 
-				Screen.showCursor = false;
-			}
-			else {
+										Screen.showCursor = false;
+								} else {
 
-			}
+								}
 			
-		}	//if the mouse hovers over the buttton then the tooltip appears describing the tower
-		if (tower1Rect.Contains (Event.current.mousePosition)) {
-			if (Money.getMoneyAmount() >= 100) {
-				GUI.tooltip = "100 Gold. Can be upgraded.";
-			}
-			else {
-				GUI.tooltip = "Cannot afford!";
-			}
-			GUI.Label (new Rect (120, 40, 200, 120), GUI.tooltip);
+						}	//if the mouse hovers over the buttton then the tooltip appears describing the tower
+						if (tower1Rect.Contains (Event.current.mousePosition)) {
+								if (Money.getMoneyAmount () >= 100) {
+										GUI.tooltip = "100 Gold. Can be upgraded.";
+								} else {
+										GUI.tooltip = "Cannot afford!";
+								}
+								GUI.Label (new Rect (120, 40, 200, 120), GUI.tooltip);
+						}
+		
+						GUI.skin = Button2Skin;
+		
+						// Make the second button.
+						if (GUI.Button (tower2Rect, new GUIContent ("Tower 2", "Tower 2 Description"))) {
+								TowerPlacement.selectedTower = towerPrefab2;
+								Destroy (tower);
+								Destroy (Aoe);
+								InstantiateTower ();
+								Screen.showCursor = false;
+						}//tooltip describing the tower
+						if (tower2Rect.Contains (Event.current.mousePosition))
+								GUI.Label (new Rect (110, 70, 80, 100), GUI.tooltip);
+		
+						GUI.skin = Button3Skin;
+		
+						if (GUI.Button (tower3Rect, new GUIContent ("Tower 3", "Tower 3 Description"))) {
+								TowerPlacement.selectedTower = towerPrefab3;
+								Destroy (tower);
+								Destroy (Aoe);
+								InstantiateTower ();
+								Screen.showCursor = false;
+						}//tooltip describing the tower
+						if (tower3Rect.Contains (Event.current.mousePosition))
+								GUI.Label (new Rect (110, 100, 80, 100), GUI.tooltip);
+				}
 		}
-		
-		GUI.skin = Button2Skin;
-		
-		// Make the second button.
-		if(GUI.Button (tower2Rect, new GUIContent("Tower 2", "Tower 2 Description"))) {
-			TowerPlacement.selectedTower = towerPrefab2;
-			Destroy (tower);
-			Destroy (Aoe);
-			InstantiateTower ();
-			Screen.showCursor = false;
-		}//tooltip describing the tower
-		if(tower2Rect.Contains (Event.current.mousePosition))
-			GUI.Label (new Rect(110,70,80,100), GUI.tooltip);
-		
-		GUI.skin = Button3Skin;
-		
-		if (GUI.Button (tower3Rect , new GUIContent("Tower 3", "Tower 3 Description"))) {
-			TowerPlacement.selectedTower = towerPrefab3;
-			Destroy (tower);
-			Destroy (Aoe);
-			InstantiateTower ();
-			Screen.showCursor = false;
-		}//tooltip describing the tower
-		if(tower3Rect.Contains (Event.current.mousePosition))
-			GUI.Label (new Rect(110,100,80,100), GUI.tooltip);
-	}
 }
