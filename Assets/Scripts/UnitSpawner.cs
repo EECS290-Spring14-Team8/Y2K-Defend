@@ -23,7 +23,7 @@ public class UnitSpawner : MonoBehaviour {
 		if(numUnits <= 0){
 			spawnReady = false;
 			//this will need some testing
-			numUnits += (int)waveCompleted*5 + 10;
+			numUnits += (int)waveCompleted*10 + 10;
 			//spawned += (int)waveCompleted*5 + 10;
 			waveCompleted += 1;
 			updateRandom();
