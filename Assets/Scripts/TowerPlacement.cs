@@ -164,7 +164,7 @@ public class TowerPlacement : MonoBehaviour {
 						Rect tower1Rect = new Rect (20, 40, 90, 25);
 						Rect tower2Rect = new Rect (20, 70, 90, 25);
 						Rect tower3Rect = new Rect (20, 100, 90, 25);
-						Rect moneyRect = new Rect (10, 160, 100, 25);	//shows how much money you have
+						
 		
 						GUI.skin = DefaultSkin;
 						//does every button have its own skin?
@@ -173,7 +173,7 @@ public class TowerPlacement : MonoBehaviour {
 						GUI.Box (boxRect, "Tower Menu");
 						//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
 		
-						GUI.Label (moneyRect, " Money: " + Money.getMoneyAmount ().ToString ());
+						
 		
 						GUI.skin = Button1Skin;
 
@@ -226,5 +226,8 @@ public class TowerPlacement : MonoBehaviour {
 						if (tower3Rect.Contains (Event.current.mousePosition))
 								GUI.Label (new Rect (110, 100, 80, 100), GUI.tooltip);
 				}
+		Rect moneyRect = new Rect (10, 160, 100, 25);	//shows how much money you have
+		GUI.Label (moneyRect, " Money: " + Money.getMoneyAmount ().ToString ());
+
 		}
 }
