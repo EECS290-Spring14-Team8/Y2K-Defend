@@ -25,7 +25,7 @@ public class FireWall : Turret {
 			ready = Time.time + attackspeed;
 		}
 		if (!sighted) {
-			particles.Pause();		
+			particles.Stop();		
 		}
 	
 	}

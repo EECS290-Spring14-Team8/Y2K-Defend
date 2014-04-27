@@ -53,7 +53,7 @@ public class TowerPlacement : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast(ray,out hit,Mathf.Infinity,1<<8)){
-				tower.transform.position = hit.point;
+				tower.transform.position = hit.point + new Vector3(0,5,0);
 			}
 			else{
 				mousePos.z = camera.transform.position.y - .3f;//height of the camera
