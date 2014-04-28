@@ -34,7 +34,7 @@ public class Dude : MonoBehaviour {
 	
 	}
 
-	void OnControllerColliderHit(ControllerColliderHit hit){
+	public void OnControllerColliderHit(ControllerColliderHit hit){
 		if(hit.gameObject.tag == "MotherBoard"){
 			MotherBoardScript m = hit.gameObject.GetComponent<MotherBoardScript>();
 			m.takeDamage(damage);

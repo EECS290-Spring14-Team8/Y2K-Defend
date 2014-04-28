@@ -34,6 +34,11 @@ public class AIPathFinder : MonoBehaviour {
 		}
 
 	}
+
+	public Vector3 getLastWP() {
+		return path.vectorPath [currentWaypoint - 2];
+	}
+
 	void FixedUpdate(){
 		if(path == null){
 			return;

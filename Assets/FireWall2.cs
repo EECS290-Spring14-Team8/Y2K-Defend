@@ -19,7 +19,7 @@ public class FireWall2 : FireWall {
 			ready = Time.time + attackspeed;
 		}
 		if (!sighted) {
-			particles.Pause();		
+			particles.Stop();		
 		}
 	}
 }

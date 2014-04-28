@@ -30,7 +30,7 @@ public class FireWall : Turret {
 	
 	}
 
-	new void shoot() {
+	new public void shoot() {
 		for(int i = dudes.Count - 1; i>=0; i--){
 			if (dudes[i] != null){
 				dudes[i].takeDamage(this.Power);
