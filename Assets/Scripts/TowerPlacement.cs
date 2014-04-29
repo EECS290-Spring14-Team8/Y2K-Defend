@@ -178,6 +178,7 @@ public class TowerPlacement : MonoBehaviour {
 			Rect boxRect = new Rect (10, 10, 120, 500);
 			Rect tower1Rect = new Rect (20, 40, 100, 100);
 			Rect tower2Rect = new Rect (20, 160, 100, 100);
+			Rect tower3Rect = new Rect(20, 280, 100, 100);
 			// Rect tower3Rect = new Rect (20, 280, 100, 100);
 			
 			
@@ -240,19 +241,27 @@ public class TowerPlacement : MonoBehaviour {
 
 
 
-			/*
+
 			GUI.skin = Button3Skin;
 			
 			if (GUI.Button (tower3Rect, new GUIContent ("Tower 3", "Tower 3 Description"))) {
-				TowerPlacement.selectedTower = towerPrefab3;
-				Destroy (tower);
-				Destroy (Aoe);
-				InstantiateTower ();
-				Screen.showCursor = false;
+				if (Money.getMoneyAmount() >= 1000) {
+					TowerPlacement.selectedTower = towerPrefab3;
+					Destroy (tower);
+					Destroy (Aoe);
+					Money.adjustMoneyAmount(-1000);
+					InstantiateTower ();
+					Screen.showCursor = false;
+				}
 			}//tooltip describing the tower
-			if (tower3Rect.Contains (Event.current.mousePosition))
-				GUI.Label (new Rect (110, 100, 80, 100), GUI.tooltip);
-			 */
+			if (tower3Rect.Contains (Event.current.mousePosition)) {
+				if (Money.getMoneyAmount () >= 1000) {
+					GUI.tooltip = "[1000 Gold] Web Network: Buffs other towers in range.\n" +
+						"Can be upgraded for increased damage and attack speed.";
+				} else {
+					GUI.tooltip = "[1000 Gold] Cannot afford!";
+				}
+				GUI.Label (new Rect (140, 295, 500, 300), GUI.tooltip);			}
 
 
 		}
