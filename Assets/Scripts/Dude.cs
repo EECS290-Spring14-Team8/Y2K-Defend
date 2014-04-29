@@ -23,7 +23,7 @@ public class Dude : MonoBehaviour {
 	}
 
 	public void die() {
-		Money.adjustMoneyAmount (50);
+		Money.adjustMoneyAmount (5);
 		UnitSpawner.spawned--;
 		Destroy(gameObject);
 		Debug.Log(UnitSpawner.spawned);

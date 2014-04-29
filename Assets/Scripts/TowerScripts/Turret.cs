@@ -78,11 +78,26 @@ public class Turret : MonoBehaviour {
 		Destroy(this.gameObject);
 		return GameManager.selectedScript;
 	}
-	
+
+	void SellTower(){
+				if (GameManager.selectedScript.name.Equals ("Basic1(Clone)")) 
+						Money.adjustMoneyAmount (90);
+				if (GameManager.selectedScript.name.Equals ("Basic2(Clone)"))
+						Money.amount += 150;
+				if (GameManager.selectedScript.name.Equals ("Basic3(Clone)"))
+						Money.amount += 210;
+				if (GameManager.selectedScript.name.Equals ("FireWall(Clone)"))
+						Money.amount += 180;
+				if (GameManager.selectedScript.name.Equals ("FireWall2(Clone)"))
+						Money.amount += 240;
+				Debug.Log (GameManager.selectedScript.name);
+				Destroy (this.gameObject);
+		}
+
 	void OnGUI(){
 		if (!UnitSpawner.spawnReady && UnitSpawner.spawned == 0) {
 			if (GameManager.selectedScript == this) {
-				GUI.Box (new Rect (100, Screen.height - 70, 120, 100), GUIContent.none);
+				GUI.Box (new Rect (100, Screen.height - 70, 240, 100), GUIContent.none);
 				if (this.upgrade != null) {
 					if (Money.getMoneyAmount () < 100)
 						GUI.Button (new Rect (110, Screen.height - 60, 100, 50), "Insufficient\nGold!");
@@ -95,7 +110,10 @@ public class Turret : MonoBehaviour {
 				} else {
 					GUI.Button (new Rect (110, Screen.height - 60, 100, 50), "Cannot be\nupgraded");
 				}
+				if(GUI.Button (new Rect(230, Screen.height - 60, 100, 50), "Sell Back"))
+				   SellTower();
 			}
+
 		}
 	}
 	
