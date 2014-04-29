@@ -14,6 +14,7 @@ public class Turret : MonoBehaviour {
 	public GameObject target;
 	public int range = 30;
 	public GameObject muzzFlash;
+	public bool Commanded = false;
 	
 	// Use this for initialization
 	void Start () {
