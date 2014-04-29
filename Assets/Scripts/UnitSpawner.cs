@@ -17,7 +17,7 @@ public class UnitSpawner : MonoBehaviour {
 	void Start () {
 		numUnits = 10;
 		unit1Range = 33;
-		unit2Range = 66;
+		unit2Range = 80;
 
 	}
 	
@@ -42,11 +42,13 @@ public class UnitSpawner : MonoBehaviour {
 		int select;
 		select = Random.Range(0,100);
 		if (select < unit1Range) {
-						select = 0;
-				} else if (select < unit2Range) {
-						select = 1;
-				} else
-						select = 2;
+			select = 0;
+		} 
+		else if (select < unit2Range) {
+			select = 1;
+		} 
+		else
+			select = 2;
 		GameObject unit = (GameObject)Instantiate(enemyUnits[select],transform.position,transform.rotation);
 		unit.GetComponent<AIPathFinder>().target = target;
 		numUnits -= 1;
