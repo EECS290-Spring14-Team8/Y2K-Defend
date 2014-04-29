@@ -13,6 +13,8 @@ MonoImporter:
   - towerIcon1: {fileID: 2800000, guid: 60670b3d268ca41bc83839a18c74605f, type: 3}
   - towerIcon2: {fileID: 2800000, guid: 26449de0c30ec4677a461366c3c8982a, type: 3}
   - towerIcon3: {instanceID: 0}
+  - clickSound: {fileID: 8300000, guid: c971ebc3613f24192acb8a5d4a6f39a8, type: 3}
+  - noSound: {fileID: 8300000, guid: 97ec42652aab548e0b934f9c9d90fa19, type: 3}
   - NegativeSkin: {fileID: 11400000, guid: d6a5c2dc96a367b4bb8430ca16c9ac6b, type: 2}
   - DefaultSkin: {fileID: 11400000, guid: 1f93b0916f822f24a8bd9b30323e3333, type: 2}
   executionOrder: 0

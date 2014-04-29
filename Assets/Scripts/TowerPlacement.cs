@@ -28,6 +28,10 @@ public class TowerPlacement : MonoBehaviour {
 	public Texture towerIcon1;
 	public Texture towerIcon2;
 	public Texture towerIcon3;
+
+	public AudioClip clickSound, noSound;
+
+	int waveNum = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -49,7 +53,6 @@ public class TowerPlacement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 		if (tower != null) {
 			mousePos = Input.mousePosition;
 			if (Input.GetMouseButtonDown (0))
@@ -121,11 +124,13 @@ public class TowerPlacement : MonoBehaviour {
 		Aoe.renderer.material = Posotive;
 		return true;
 	}
+
 	//when the mouse is clicked it places the turret at the location and creates another turret to follow the mouse
 	void OnMouseClick(){
 		
 		Screen.showCursor = true;
 		if (CheckPosition ()) {
+			audio.PlayOneShot(clickSound);
 			tower.tag = "tower";
 			Destroy (Aoe);
 			InstantiateTower ();
@@ -133,6 +138,7 @@ public class TowerPlacement : MonoBehaviour {
 			Destroy (Aoe);
 			Screen.showCursor = true;
 		} else {
+			audio.PlayOneShot (noSound);
 			Destroy (Aoe);
 			Destroy (tower);
 		}
@@ -142,6 +148,7 @@ public class TowerPlacement : MonoBehaviour {
 		Screen.showCursor = true;
 		Destroy (Aoe);
 		Destroy (tower);
+		audio.PlayOneShot (noSound);
 	}
 	
 	GameObject InstantiateTower(){
@@ -155,9 +162,13 @@ public class TowerPlacement : MonoBehaviour {
 	public GUISkin DefaultSkin;
 	
 	void OnGUI () {
+		GUI.Box (new Rect(Screen.width/2 - 60, 10, 120, 25), "Wave " + waveNum.ToString() + " / " + MotherBoardScript.health.ToString() + " Life");
+
+		// during wave, the menus will disappear
 		if (!UnitSpawner.spawnReady && UnitSpawner.spawned == 0) {
 			if (GUI.Button (new Rect (Screen.width - 110, 10, 100, 50), "Start Wave")) {
 				UnitSpawner.spawnReady = true;
+				waveNum++;
 			}
 			
 			
@@ -176,8 +187,7 @@ public class TowerPlacement : MonoBehaviour {
 			// Make a background box
 			GUI.Box (boxRect, "Money: " + Money.getMoneyAmount().ToString());
 			//GUI.Label (new Rect (0, 40, 100, 40), GUI.tooltip);
-			
-			
+
 			GUI.skin = Button1Skin;
 			
 			if (GUI.Button (tower1Rect, new GUIContent (towerIcon1))) {
