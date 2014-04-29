@@ -79,20 +79,21 @@ public class Turret : MonoBehaviour {
 	}
 	
 	void OnGUI(){
-		if (GameManager.selectedScript == this) {
-			GUI.Box (new Rect (100, Screen.height - 70, 120, 100), GUIContent.none);
-			if (this.upgrade != null){
-				if (Money.getMoneyAmount() < 100)
-					GUI.Button(new Rect(110,Screen.height-60,100,50), "Insufficient\nGold!");
-				else {
-					if (GUI.Button(new Rect(110,Screen.height-60,100,50), "Upgrade\n(100 Gold)")) {
-						Money.adjustMoneyAmount(-100);
-						Upgrade ();
+		if (!UnitSpawner.spawnReady && UnitSpawner.spawned == 0) {
+			if (GameManager.selectedScript == this) {
+				GUI.Box (new Rect (100, Screen.height - 70, 120, 100), GUIContent.none);
+				if (this.upgrade != null) {
+					if (Money.getMoneyAmount () < 100)
+						GUI.Button (new Rect (110, Screen.height - 60, 100, 50), "Insufficient\nGold!");
+					else {
+						if (GUI.Button (new Rect (110, Screen.height - 60, 100, 50), "Upgrade\n(100 Gold)")) {
+							Money.adjustMoneyAmount (-100);
+							Upgrade ();
+						}
 					}
+				} else {
+					GUI.Button (new Rect (110, Screen.height - 60, 100, 50), "Cannot be\nupgraded");
 				}
-			}
-			else {
-				GUI.Button(new Rect(110,Screen.height-60,100,50), "Cannot be\nupgraded");
 			}
 		}
 	}

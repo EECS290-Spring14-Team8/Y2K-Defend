@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MotherBoardScript : MonoBehaviour {
 
-	public int health = 200;
+	public static int health = 200;
 	public Material thisMat;
 
 	// Use this for initialization

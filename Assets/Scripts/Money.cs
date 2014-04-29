@@ -10,7 +10,7 @@ public class Money : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-		startingAmount = 1000;
+		startingAmount = 500;
 		amount = startingAmount;
 	}
 	

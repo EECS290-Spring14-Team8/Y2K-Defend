@@ -22,6 +22,7 @@ public class FireWall : Turret {
 		if (this.sighted && Time.time > ready) {
 			particles.Play();
 			this.shoot();
+			audio.Play ();
 			ready = Time.time + attackspeed;
 		}
 		if (!sighted) {
@@ -31,13 +32,14 @@ public class FireWall : Turret {
 	}
 
 	new public void shoot() {
-		for(int i = dudes.Count - 1; i>=0; i--){
+		for(int i = dudes.Count - 1; i >= 0; i--){
 			if (dudes[i] != null){
 				dudes[i].takeDamage(this.Power);
 			}
-			else{
+			else {
 				dudes.RemoveAt(i);
 			}
+			audio.Play();
 		}
 		/*foreach (Dude x in dudes) {
 			if (x != null){

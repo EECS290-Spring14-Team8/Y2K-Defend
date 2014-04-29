@@ -4,13 +4,16 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - towerPrefab1: {fileID: 100000, guid: 9bf5f9084f305ba42aa27d4f9f7cfa4e, type: 2}
-  - towerPrefab2: {fileID: 100004, guid: 009b832acffa84d128e797f16995f0da, type: 2}
-  - towerPrefab3: {fileID: 100016, guid: 578a471a60761442cadb5d27aaf30f2e, type: 2}
+  - towerPrefab2: {fileID: 100002, guid: 894c875e5ec464048aa2968791d184af, type: 2}
+  - towerPrefab3: {instanceID: 0}
   - aoePrefab: {fileID: 100000, guid: 6bba24f7075725c409920486c8c3f9ed, type: 2}
   - Posotive: {fileID: 2100000, guid: 9bdab5a837f9edc4a88ce1fe44484651, type: 2}
   - Negative: {fileID: 2100000, guid: ed0a6bcbe5d06ef438194d6358265f23, type: 2}
   - camera: {instanceID: 0}
-  - okSound: {fileID: 8300000, guid: 3e8383f4aa3ac4c50a35e3f79377dd13, type: 3}
+  - towerIcon1: {fileID: 2800000, guid: 60670b3d268ca41bc83839a18c74605f, type: 3}
+  - towerIcon2: {fileID: 2800000, guid: 26449de0c30ec4677a461366c3c8982a, type: 3}
+  - towerIcon3: {instanceID: 0}
+  - clickSound: {fileID: 8300000, guid: c971ebc3613f24192acb8a5d4a6f39a8, type: 3}
   - noSound: {fileID: 8300000, guid: 97ec42652aab548e0b934f9c9d90fa19, type: 3}
   - NegativeSkin: {fileID: 11400000, guid: d6a5c2dc96a367b4bb8430ca16c9ac6b, type: 2}
   - DefaultSkin: {fileID: 11400000, guid: 1f93b0916f822f24a8bd9b30323e3333, type: 2}
