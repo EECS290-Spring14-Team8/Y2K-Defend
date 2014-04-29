@@ -16,6 +16,7 @@ public class FireWall2 : FireWall {
 		if (this.sighted && Time.time > ready) {
 			particles.Play();
 			this.shoot();
+			audio.Play ();
 			ready = Time.time + attackspeed;
 		}
 		if (!sighted) {
