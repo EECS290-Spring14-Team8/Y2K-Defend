@@ -9,6 +9,7 @@ public class FireWall2 : FireWall {
 		particles = GetComponent<ParticleSystem> ();
 		particles.Pause ();
 		this.Power = 30;
+		this.range = 10;
 	}
 	
 	// Update is called once per frame
