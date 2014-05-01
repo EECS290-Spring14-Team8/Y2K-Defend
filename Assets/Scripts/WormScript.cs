@@ -11,7 +11,7 @@ public class WormScript : Dude {
 	void Start () {
 		nextSplit = Time.time + splitTime;
 		pathinfo = gameObject.GetComponent<AIPathFinder> ();
-		health = 450;
+		health = 200;
 		this.speed = 15;
 		this.gameObject.GetComponent<AIPathFinder> ().speed = (float)this.speed;
 	}

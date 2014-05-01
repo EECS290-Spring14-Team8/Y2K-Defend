@@ -5,6 +5,7 @@ public class MotherBoardScript : MonoBehaviour {
 
 	public static int health = 200;
 	public Material thisMat;
+	public AudioClip hitWarning;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +14,7 @@ public class MotherBoardScript : MonoBehaviour {
 	}
 
 	public void takeDamage(int damage) {
+		audio.PlayOneShot (hitWarning);
 		health -= damage;
 		thisMat.color = Color.Lerp (thisMat.color, Color.red, .01f * damage);
 	}

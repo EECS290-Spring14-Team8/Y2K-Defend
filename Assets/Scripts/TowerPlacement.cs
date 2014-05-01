@@ -30,8 +30,9 @@ public class TowerPlacement : MonoBehaviour {
 	public Texture towerIcon1;
 	public Texture towerIcon2;
 	public Texture towerIcon3;
+	public Texture towerIcon4;
 
-	public AudioClip clickSound, noSound;
+	public AudioClip clickSound, noSound, incomingSound;
 
 	int waveNum = 0;
 	
@@ -171,6 +172,8 @@ public class TowerPlacement : MonoBehaviour {
 			if (GUI.Button (new Rect (Screen.width - 110, 10, 100, 50), "Start Wave")) {
 				UnitSpawner.spawnReady = true;
 				waveNum++;
+				audio.PlayOneShot(incomingSound);
+
 			}
 			
 			
@@ -238,7 +241,7 @@ public class TowerPlacement : MonoBehaviour {
 				} else {
 					GUI.tooltip = "[300 Gold] Cannot afford!";
 				}
-				GUI.Label (new Rect (140, 185, 500, 300), GUI.tooltip);
+				GUI.Label (new Rect (140, 200, 500, 300), GUI.tooltip);
 				
 			}
 
@@ -247,7 +250,7 @@ public class TowerPlacement : MonoBehaviour {
 
 			GUI.skin = Button3Skin;
 			
-			if (GUI.Button (tower3Rect, new GUIContent ("Web Network", "Buffs nearby towers"))) {
+			if (GUI.Button (tower3Rect, new GUIContent (towerIcon3))) {
 				if (Money.getMoneyAmount() >= 1000) {
 					TowerPlacement.selectedTower = towerPrefab3;
 					Destroy (tower);
@@ -259,14 +262,21 @@ public class TowerPlacement : MonoBehaviour {
 			}//tooltip describing the tower
 			if (tower3Rect.Contains (Event.current.mousePosition)) {
 				if (Money.getMoneyAmount () >= 1000) {
-					GUI.tooltip = "[1000 Gold] Web Network: Buffs other towers in range.\n" +
+					GUI.tooltip = "[1000 Gold] Web Network: Buffs nearby towers.\n" +
 						"Can be upgraded for increased damage and attack speed.";
 				} else {
 					GUI.tooltip = "[1000 Gold] Cannot afford!";
 				}
-				GUI.Label (new Rect (140, 295, 500, 300), GUI.tooltip);
+				GUI.Label (new Rect (140, 320, 500, 300), GUI.tooltip);
 			}
-			if (GUI.Button (tower4Rect, new GUIContent ("Honey Pot", "Slows down nearby enemies."))) {
+
+
+
+
+
+
+
+			if (GUI.Button (tower4Rect, new GUIContent (towerIcon4))) {
 				if (Money.getMoneyAmount() >= 500) {
 					TowerPlacement.selectedTower = towerPrefab4;
 					Destroy (tower);
@@ -284,7 +294,7 @@ public class TowerPlacement : MonoBehaviour {
 				} else {
 					GUI.tooltip = "[500 Gold] Cannot afford!";
 				}
-				GUI.Label (new Rect (140, 405, 500, 300), GUI.tooltip);
+				GUI.Label (new Rect (140, 440, 500, 300), GUI.tooltip);
 			}
 
 		}

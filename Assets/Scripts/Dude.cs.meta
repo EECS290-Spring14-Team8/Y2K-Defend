@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: e8efd14ab89d00a47bd9f5ef57853ab3
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - money: {instanceID: 0}
+  - explosion: {fileID: 100000, guid: a468b329d10684917b0c8573a82eb347, type: 2}
+  - deathSound: {fileID: 8300000, guid: 6b3f9dfeea4714ed48cc96ed4f216fc7, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
