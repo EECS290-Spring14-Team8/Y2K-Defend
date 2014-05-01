@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class CommanderScript : Turret {
-
+public class Commander2 : CommanderScript {
 
 	// Use this for initialization
 	void Start () {
 		this.Commanded = true;
-		this.Power = 10;
-		this.attackspeed = .8f;
-		this.range = 25;
+		this.Power = 20;
+		this.attackspeed = .65f;
+		this.range = 30;
 	
 	}
 	
