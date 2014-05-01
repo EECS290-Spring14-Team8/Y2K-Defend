@@ -211,7 +211,7 @@ public class TowerPlacement : MonoBehaviour {
 			}	//if the mouse hovers over the buttton then the tooltip appears describing the tower
 			if (tower1Rect.Contains (Event.current.mousePosition)) {
 				if (Money.getMoneyAmount () >= 150) {
-					GUI.tooltip = "[150 Gold] Basic: Shoots enemies one by one.\n" +
+					GUI.tooltip = "[150 Gold] Antivirus: Shoots enemies one by one.\n" +
 						          "Can be upgraded for faster, stronger fire.";
 				} else {
 					GUI.tooltip = "[150 Gold] Cannot afford!";

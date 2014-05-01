@@ -8,6 +8,7 @@ public class HoneyPot : Turret {
 	// Use this for initialization
 	void Start () {
 		this.range = 20;
+		this.upgradeCost = 800;
 	}
 	
 	// Update is called once per frame

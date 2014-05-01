@@ -15,6 +15,7 @@ public class MotherBoardScript : MonoBehaviour {
 		hurtEffect.enabled = false;
 		hurtEffect.transform.position = new Vector3 (0.5f, 0.5f, 0f);
 		hurtEffect.guiTexture.pixelInset = new Rect (-Screen.width / 2, -Screen.height / 2, Screen.width, Screen.height);
+		hurtEffect.guiTexture.color = new Color (1.0f, 1.0f, 1.0f, 30 / 255.0f);
 
 	}
 	
@@ -36,9 +37,16 @@ public class MotherBoardScript : MonoBehaviour {
 	}
 	
 	private IEnumerator showEffect() {
+		hurtEffect.guiTexture.color = new Color (1.0f, 1.0f, 1.0f, 30 / 255.0f);
+
 		hurtEffect.enabled = true;
 		yield return new WaitForSeconds(0.1f);
+		hurtEffect.guiTexture.color = new Color (1.0f, 1.0f, 1.0f, 20 / 255.0f);
+		yield return new WaitForSeconds(0.1f);
+		hurtEffect.guiTexture.color = new Color (1.0f, 1.0f, 1.0f, 10 / 255.0f);
+		yield return new WaitForSeconds(0.1f);
 		hurtEffect.enabled = false;
+
 	}
 	
 	

@@ -7,7 +7,7 @@ public class Dude : MonoBehaviour {
 	public int moneydropped;
 	public static double dudespeed = 10;
 	public double speed = 20;
-	public int damage = 1;
+	public int damage = 2;
 	public Money money;
 	public GameObject explosion;
 	public AudioClip deathSound;

@@ -5,6 +5,7 @@ public class Basic3 : Turret {
 
 	// Use this for initialization
 	void Start () {
+		this.upgradeCost = 900;
 	
 	}
 	

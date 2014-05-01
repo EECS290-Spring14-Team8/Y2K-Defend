@@ -9,6 +9,7 @@ public class Commander2 : CommanderScript {
 		this.Power = 20;
 		this.attackspeed = .65f;
 		this.range = 30;
+		upgradeCost = 2000;
 	
 	}
 	
