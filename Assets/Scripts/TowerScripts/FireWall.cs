@@ -14,7 +14,7 @@ public class FireWall : Turret {
 		this.attackspeed = .5f;
 		particles = GetComponent<ParticleSystem> ();
 		particles.Pause ();
-		this.Power = 30;
+		this.Power = 10;
 		this.range = 10;
 	}
 	

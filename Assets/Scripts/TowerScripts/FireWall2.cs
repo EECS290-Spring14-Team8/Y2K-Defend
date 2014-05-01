@@ -8,7 +8,7 @@ public class FireWall2 : FireWall {
 		this.attackspeed = .5f;
 		particles = GetComponent<ParticleSystem> ();
 		particles.Pause ();
-		this.Power = 30;
+		this.Power = 15;
 		this.range = 10;
 	}
 	

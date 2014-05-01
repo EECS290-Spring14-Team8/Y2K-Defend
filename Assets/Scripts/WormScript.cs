@@ -11,7 +11,9 @@ public class WormScript : Dude {
 	void Start () {
 		nextSplit = Time.time + splitTime;
 		pathinfo = gameObject.GetComponent<AIPathFinder> ();
-		health = 400;
+		health = 450;
+		this.speed = 15;
+		this.gameObject.GetComponent<AIPathFinder> ().speed = (float)this.speed;
 	}
 	
 	// Update is called once per frame

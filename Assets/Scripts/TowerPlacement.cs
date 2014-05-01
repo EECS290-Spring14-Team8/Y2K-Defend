@@ -9,6 +9,7 @@ public class TowerPlacement : MonoBehaviour {
 	public GameObject towerPrefab1;
 	public GameObject towerPrefab2;
 	public GameObject towerPrefab3;
+	public GameObject towerPrefab4;
 	
 	public GameObject aoePrefab;
 	public Material Posotive;
@@ -24,6 +25,7 @@ public class TowerPlacement : MonoBehaviour {
 	GUISkin Button1Skin;
 	GUISkin Button2Skin;
 	GUISkin Button3Skin;
+	GUISkin Button4Skin;
 
 	public Texture towerIcon1;
 	public Texture towerIcon2;
@@ -179,6 +181,7 @@ public class TowerPlacement : MonoBehaviour {
 			Rect tower1Rect = new Rect (20, 40, 100, 100);
 			Rect tower2Rect = new Rect (20, 160, 100, 100);
 			Rect tower3Rect = new Rect(20, 280, 100, 100);
+			Rect tower4Rect = new Rect(20, 400, 100, 100);
 			// Rect tower3Rect = new Rect (20, 280, 100, 100);
 			
 			
@@ -244,7 +247,7 @@ public class TowerPlacement : MonoBehaviour {
 
 			GUI.skin = Button3Skin;
 			
-			if (GUI.Button (tower3Rect, new GUIContent ("Tower 3", "Tower 3 Description"))) {
+			if (GUI.Button (tower3Rect, new GUIContent ("Web Network", "Buffs nearby towers"))) {
 				if (Money.getMoneyAmount() >= 1000) {
 					TowerPlacement.selectedTower = towerPrefab3;
 					Destroy (tower);
@@ -261,8 +264,28 @@ public class TowerPlacement : MonoBehaviour {
 				} else {
 					GUI.tooltip = "[1000 Gold] Cannot afford!";
 				}
-				GUI.Label (new Rect (140, 295, 500, 300), GUI.tooltip);			}
+				GUI.Label (new Rect (140, 295, 500, 300), GUI.tooltip);
+			}
+			if (GUI.Button (tower4Rect, new GUIContent ("Honey Pot", "Slows down nearby enemies."))) {
+				if (Money.getMoneyAmount() >= 500) {
+					TowerPlacement.selectedTower = towerPrefab4;
+					Destroy (tower);
+					Destroy (Aoe);
+					Money.adjustMoneyAmount(-500);
+					InstantiateTower ();
+					Screen.showCursor = false;
+				}
+			}
 
+			if (tower4Rect.Contains (Event.current.mousePosition)) {
+				if (Money.getMoneyAmount () >= 500) {
+					GUI.tooltip = "[500 Gold] HoneyPot: Slows down nearby enemies.\n" +
+						"Can be upgraded for more slowing power and range.";
+				} else {
+					GUI.tooltip = "[500 Gold] Cannot afford!";
+				}
+				GUI.Label (new Rect (140, 405, 500, 300), GUI.tooltip);
+			}
 
 		}
 
