@@ -3,12 +3,13 @@ using System.Collections;
 
 public class MotherBoardScript : MonoBehaviour {
 	
-	public static int health = 200;
+	public static int health;
 	public Material thisMat;
 	public GUITexture hurtEffect;
 	
 	// Use this for initialization
 	void Start () {
+		health = 200;
 		//thisMat = this.gameObject.GetComponent<Shader>();
 		thisMat.color = Color.green;
 
