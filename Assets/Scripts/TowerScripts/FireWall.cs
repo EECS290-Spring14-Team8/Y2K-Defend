@@ -33,23 +33,19 @@ public class FireWall : Turret {
 	}
 
 	new public void shoot() {
+		int shot = 0;
 		for(int i = dudes.Count - 1; i >= 0; i--){
 			if (dudes[i] != null){
 				dudes[i].takeDamage(this.Power);
+				shot++;
 			}
 			else {
 				dudes.RemoveAt(i);
 			}
+			if (shot > 8)
+				return;
 			audio.Play();
 		}
-		/*foreach (Dude x in dudes) {
-			if (x != null){
-				x.takeDamage(this.Power);
-			}
-			else{
-				dudes.Remove(x);
-			}
 
-		}*/
 	}
 }
