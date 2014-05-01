@@ -15,6 +15,7 @@ public class Turret : MonoBehaviour {
 	public int range = 30;
 	public GameObject muzzFlash;
 	public bool Commanded = false;
+	public int upgradeCost = 300;
 	
 	// Use this for initialization
 	void Start () {
@@ -80,26 +81,7 @@ public class Turret : MonoBehaviour {
 	}
 	
 	void SellTower(){
-		if (GameManager.selectedScript.name.Equals ("Basic1(Clone)")) 
-			Money.adjustMoneyAmount (90);
-		if (GameManager.selectedScript.name.Equals ("Basic2(Clone)"))
-			Money.adjustMoneyAmount (150);
-		if (GameManager.selectedScript.name.Equals ("Basic3(Clone)"))
-			Money.adjustMoneyAmount (210);
-		if (GameManager.selectedScript.name.Equals ("FireWall(Clone)"))
-			Money.adjustMoneyAmount (180);
-		if (GameManager.selectedScript.name.Equals ("FireWall2(Clone)"))
-			Money.adjustMoneyAmount (240);
-		if (GameManager.selectedScript.name.Equals ("Commander1(Clone)"))
-			Money.adjustMoneyAmount (600);
-		if (GameManager.selectedScript.name.Equals ("Commander2(Clone)"))
-			Money.adjustMoneyAmount (660);
-		if (GameManager.selectedScript.name.Equals ("honeypot(Clone)"))
-			Money.adjustMoneyAmount (300);
-		if (GameManager.selectedScript.name.Equals ("honeypot2(Clone)"))
-			Money.adjustMoneyAmount (360);
-		if (GameManager.selectedScript.name.Equals ("honeypot3(Clone)"))
-			Money.adjustMoneyAmount (420);
+		Money.adjustMoneyAmount (upgradeCost / 2);
 		Debug.Log (GameManager.selectedScript.name);
 		Destroy (this.gameObject);
 	}
@@ -109,11 +91,11 @@ public class Turret : MonoBehaviour {
 			if (GameManager.selectedScript == this) {
 				GUI.Box (new Rect (100, Screen.height - 70, 240, 100), GUIContent.none);
 				if (this.upgrade != null) {
-					if (Money.getMoneyAmount () < 100)
+					if (Money.getMoneyAmount () < upgradeCost)
 						GUI.Button (new Rect (110, Screen.height - 60, 100, 50), "Insufficient\nGold!");
 					else {
-						if (GUI.Button (new Rect (110, Screen.height - 60, 100, 50), "Upgrade\n(100 Gold)")) {
-							Money.adjustMoneyAmount (-100);
+						if (GUI.Button (new Rect (110, Screen.height - 60, 100, 50), "Upgrade\n(" + upgradeCost + " Gold)")) {
+							Money.adjustMoneyAmount (-upgradeCost);
 							Upgrade ();
 						}
 					}

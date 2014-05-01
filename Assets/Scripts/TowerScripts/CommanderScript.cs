@@ -11,6 +11,7 @@ public class CommanderScript : Turret {
 		this.Power = 10;
 		this.attackspeed = .8f;
 		this.range = 25;
+		this.upgradeCost = 1100;
 	
 	}
 	

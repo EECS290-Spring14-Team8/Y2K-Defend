@@ -7,6 +7,7 @@ public class HoneyPot2 : HoneyPot {
 	void Start () {
 		this.range = 20;
 		this.slowAmount = .3f;
+		this.upgradeCost = 1200;
 	}
 	
 	// Update is called once per frame

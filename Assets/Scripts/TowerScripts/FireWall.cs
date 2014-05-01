@@ -14,8 +14,9 @@ public class FireWall : Turret {
 		this.attackspeed = .5f;
 		particles = GetComponent<ParticleSystem> ();
 		particles.Pause ();
-		this.Power = 10;
+		this.Power = 20;
 		this.range = 10;
+		this.upgradeCost = 600;
 	}
 	
 	// Update is called once per frame
