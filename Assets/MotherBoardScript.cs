@@ -2,21 +2,28 @@
 using System.Collections;
 
 public class MotherBoardScript : MonoBehaviour {
-
+	
 	public static int health = 200;
 	public Material thisMat;
-	public AudioClip hitWarning;
-
+	public GUITexture hurtEffect;
+	
 	// Use this for initialization
 	void Start () {
 		//thisMat = this.gameObject.GetComponent<Shader>();
 		thisMat.color = Color.green;
-	}
 
+		hurtEffect.enabled = false;
+		hurtEffect.transform.position = new Vector3 (0.5f, 0.5f, 0f);
+		hurtEffect.guiTexture.pixelInset = new Rect (-Screen.width / 2, -Screen.height / 2, Screen.width, Screen.height);
+
+	}
+	
 	public void takeDamage(int damage) {
-		audio.PlayOneShot (hitWarning);
+		if (!audio.isPlaying) audio.Play();
 		health -= damage;
 		thisMat.color = Color.Lerp (thisMat.color, Color.red, .01f * damage);
+		StartCoroutine (showEffect());
+		Debug.Log ("Motherboard: Taking " + damage + " damage!");
 	}
 	
 	// Update is called once per frame
@@ -26,9 +33,15 @@ public class MotherBoardScript : MonoBehaviour {
 			//gameover condition		
 			Application.LoadLevel(2);
 		}
-
 	}
-
+	
+	private IEnumerator showEffect() {
+		hurtEffect.enabled = true;
+		yield return new WaitForSeconds(0.1f);
+		hurtEffect.enabled = false;
+	}
+	
+	
 	/*void OnCollisionEnter(Collision other) {
 		if (other.gameObject.tag.Equals("Enemy")) {
 			Debug.Log("lost health");

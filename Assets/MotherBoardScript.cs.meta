@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 0ca0a83b6493500489a4add925381f36
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - thisMat: {instanceID: 0}
+  - hurtEffect: {fileID: 13100000, guid: 65a6f602cf72d4566a38e740b7763b41, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
