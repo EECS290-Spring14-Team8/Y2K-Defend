@@ -13,7 +13,7 @@ public class Virus : Dude {
 	
 	// Update is called once per frame
 	void Update () {
-		if (this.transform.position.y < 100) {
+		if (this.transform.position.y < -100) {
 			UnitSpawner.spawned--;
 			Destroy(this.gameObject);
 		}
