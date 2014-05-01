@@ -94,6 +94,12 @@ public class Turret : MonoBehaviour {
 			Money.adjustMoneyAmount (600);
 		if (GameManager.selectedScript.name.Equals ("Commander2(Clone)"))
 			Money.adjustMoneyAmount (660);
+		if (GameManager.selectedScript.name.Equals ("honeypot(Clone)"))
+			Money.adjustMoneyAmount (300);
+		if (GameManager.selectedScript.name.Equals ("honeypot2(Clone)"))
+			Money.adjustMoneyAmount (360);
+		if (GameManager.selectedScript.name.Equals ("honeypot3(Clone)"))
+			Money.adjustMoneyAmount (420);
 		Debug.Log (GameManager.selectedScript.name);
 		Destroy (this.gameObject);
 	}
