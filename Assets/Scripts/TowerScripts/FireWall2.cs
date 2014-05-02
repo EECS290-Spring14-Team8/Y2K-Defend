@@ -9,7 +9,7 @@ public class FireWall2 : FireWall {
 		particles = GetComponent<ParticleSystem> ();
 		particles.Pause ();
 		this.Power = 35;
-		this.range = 10;
+		this.range = 30;
 		this.upgradeCost = 800;
 	}
 	

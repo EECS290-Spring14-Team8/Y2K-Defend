@@ -15,7 +15,7 @@ public class FireWall : Turret {
 		particles = GetComponent<ParticleSystem> ();
 		particles.Pause ();
 		this.Power = 20;
-		this.range = 10;
+		this.range = 30;
 		this.upgradeCost = 600;
 	}
 	
